@@ -1,0 +1,177 @@
+{
+  "scenario": "scenarios/dino_time_traveler.yaml",
+  "timestamp": "2026-03-11T14:10:53Z",
+  "system_prompt_length": 3459,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "toy dinosaur",
+        "confidence": 0.92,
+        "scene": "indoor playroom",
+        "features": [
+          "green",
+          "plastic",
+          "T-Rex",
+          "toy"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "(excitedly) ROAR! Oh my goodness, look who decided to visit your playroom! It’s a big, green T-Rex! Look at those sharp teeth and that long, long tail. I wonder, is this dinosaur feeling like a friendly giant today, or is he feeling a little bit grumpy and hungry?",
+      "latency_seconds": 2.48,
+      "expected": {
+        "expected_tone": "excited, wonder",
+        "must_contain": [
+          "dinosaur"
+        ],
+        "must_not_contain": [
+          "what type",
+          "how many teeth",
+          "what color is",
+          "do you know",
+          "can you name"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Roar! He's scary!"
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_ideal",
+      "text": "(with a playful, dramatic gasp) Ooh, a scary, stompy T-Rex! He sounds very fierce! \n\nI have a magic trick! We can go back in time to when the dinosaurs lived. I'll tell you what the world looks like, and you can be the voice of the T-Rex! \n\nI’ll go first: *I’m standing in a giant, green jungle. The leaves are as big as umbrellas, and I can hear a loud \"CRUNCH\" nearby. I feel very hungry!* \n\nNow it’s your turn! You're the T-Rex in the big jungle—what do you do when you hear that loud \"CRUNCH\"?",
+      "latency_seconds": 1.84,
+      "expected": {
+        "expected_tone": "playful, building on roar",
+        "must_contain": [
+          "roar"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "I have three dinosaurs."
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_unexpected",
+      "text": "(clapping excitedly) Wow, three dinosaurs! That means it’s a whole dinosaur party! \n\nIf you are all standing together in that big, green jungle, what are you and your dinosaur friends doing? Are you stomping your feet to make the ground shake, or are you all taking a giant nap in the warm sun?",
+      "latency_seconds": 1.18,
+      "expected": {
+        "must_validate_first": true
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": ""
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_silent",
+      "text": "(softly and encouragingly) Maybe you are all stomping together? *Stomp, stomp, stomp!* \n\nLet's try one more! Imagine it’s starting to rain in the jungle, but it’s warm rain. How do your three dinosaurs feel? Are they happy to splash in the puddles, or do they want to hide under a big leaf?",
+      "latency_seconds": 2.54,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "gentle, playful"
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Yeah!"
+    },
+    {
+      "role": "ai",
+      "step": "2_rule_intro",
+      "text": "(cheering) Yay! Splashing in the puddles! I bet your dinosaurs are making the biggest, loudest splashes ever—*SPLASH, SPLASH, SPLASH!* You are such a fantastic dinosaur leader!\n\nYou’ve done an amazing job today, Dino Time Traveler! You have such a big imagination—you made those dinosaurs come to life right here in your room. \n\nBecause you played this game, you learned two very special things: You learned about **Perspective** by seeing the world through your dinosaur's eyes, and you learned about **Change** because you know how different the world was a long, long time ago when dinosaurs walked the earth! \n\nYou are a true Dino Expert! Should we put your dinosaur friends to sleep now, or do they have one more roar left in them?",
+      "latency_seconds": 2.89,
+      "expected": {
+        "expected_tone": "mysterious, storytelling",
+        "must_contain": [
+          "long ago",
+          "imagine"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "He sees big trees!"
+    },
+    {
+      "role": "ai",
+      "step": "3_round1",
+      "text": "(giggling with delight) Oh, look at that! Your T-Rex is looking way, way up at those giant trees! They must look like skyscrapers to him, don't they? \n\nYou are getting so good at seeing the world through your dinosaur's eyes—that's what we call **Perspective**. And even though your playroom is different today, you helped us travel back to a time when things were very different, which is all about **Change**.\n\nYou’ve been such a wonderful Dino Time Traveler! Do your dinosaurs want to go explore those big trees a little more, or is it time for our dino-friends to head back to their toy box home?",
+      "latency_seconds": 9.5,
+      "expected": {
+        "expected_tone": "amazed",
+        "must_contain": [
+          "tree",
+          "wow"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "He's hungry!"
+    },
+    {
+      "role": "ai",
+      "step": "3_round2",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "empathetic, playful"
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": ""
+    },
+    {
+      "role": "ai",
+      "step": "3_round3_silent",
+      "text": "(warm and gentle) Oh, a hungry T-Rex! He must be looking for a big, yummy dinosaur snack in those tall trees! You are doing such a great job imagining exactly what he needs.\n\nYou have been the most amazing Dino Time Traveler today! You really showed how you can use your **Perspective** to think just like a dinosaur, and you understand how the world has had so much **Change** since those big, green friends lived a long time ago. \n\nYou have such a big, beautiful imagination! I had so much fun exploring the jungle with you. Are you ready to tuck your dinosaurs in for a nap, or do you want to show me another toy later?",
+      "latency_seconds": 20.42,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "gentle prompt"
+      }
+    },
+    {
+      "role": "ai",
+      "step": "4_celebration",
+      "text": "",
+      "latency_seconds": 0.71,
+      "expected": {
+        "expected_tone": "proud, warm",
+        "must_contain": [
+          "time travel"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "5_closing",
+      "text": "",
+      "latency_seconds": 0.77,
+      "expected": {
+        "expected_tone": "warm celebration",
+        "must_contain": [
+          "Perspective",
+          "Change"
+        ]
+      }
+    }
+  ]
+}

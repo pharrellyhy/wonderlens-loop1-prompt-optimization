@@ -29,10 +29,11 @@ client = genai.Client(
 )
 
 
-def call_judge(prompt, model_name="gemini-3.1-flash-lite-preview", max_retries=5):
+def call_judge(prompt, model_name="gemini-3.1-flash-lite-preview", max_retries=10):
     """Call Gemini as an evaluator judge. Returns the response text."""
     for attempt in range(max_retries):
         try:
+            time.sleep(3)  # Pre-call delay to avoid rate limits
             response = client.models.generate_content(
                 model=model_name,
                 contents=prompt,
@@ -44,9 +45,10 @@ def call_judge(prompt, model_name="gemini-3.1-flash-lite-preview", max_retries=5
             )
             return response.text
         except Exception as e:
-            if "429" in str(e) and attempt < max_retries - 1:
-                wait = 2 ** attempt
-                print(f"    Rate limited, waiting {wait}s...")
+            is_transient = "429" in str(e) or "disconnected" in str(e).lower() or "RESOURCE_EXHAUSTED" in str(e)
+            if is_transient and attempt < max_retries - 1:
+                wait = 5 * (2 ** min(attempt, 4))
+                print(f"    Transient error, waiting {wait}s... ({type(e).__name__})")
                 time.sleep(wait)
             else:
                 raise

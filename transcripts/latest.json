@@ -1,0 +1,233 @@
+{
+  "scenario": "scenarios/polka_dot_patrol.yaml",
+  "timestamp": "2026-03-11T13:53:56Z",
+  "system_prompt_length": 4026,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "ladybug",
+        "confidence": 0.95,
+        "scene": "outdoor park",
+        "features": [
+          "red",
+          "spotted",
+          "insect",
+          "on leaf"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "*(gasping with pure delight)* Oh, look at those tiny, perfect polka dots on its back! They look like little dark buttons on a bright red coat. They are so beautiful! \n\nI’m curious—when you look at those spots, do they remind you of anything else? Maybe little polka-dot stickers, or drops of paint, or something else entirely?",
+      "latency_seconds": 3.09,
+      "expected": {
+        "expected_tone": "gasping delight, wonder",
+        "must_contain": [
+          "spots",
+          "dot"
+        ],
+        "must_not_contain": [
+          "how many legs",
+          "what color",
+          "what type of insect",
+          "do you know"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "It has lots of spots!"
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_ideal",
+      "text": "*(giggling with excitement)* It really does! It’s like the ladybug is wearing its very own fancy polka-dot outfit! \n\nI’m looking around the park now, and I’m starting to wonder… do you think there are other things hiding nearby that are wearing polka dots just like our little friend here? Maybe we could go on a mission to see if we can find three more things with dots, spots, or circles on them. What do you think—are you ready to be a Polka-Dot Patrol Officer with me?",
+      "latency_seconds": 1.4,
+      "expected": {
+        "expected_tone": "amazed, building excitement",
+        "must_contain": [
+          "mission",
+          "find",
+          "patrol"
+        ],
+        "must_reference": "child mentioned spots"
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "I want to catch it!"
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_unexpected",
+      "text": "*(warm and gentle)* Oh, I bet it would be so much fun to get a closer look! But you know, our little ladybug friend is very tiny and likes to zoom around on its leaf home. If we try to catch it, it might get a little scared and fly away!\n\nWhat if, instead of catching it, we become \"Polka-Dot Detectives\"? We can take a picture to keep our ladybug friend safe, and then we can go on a hunt to find three *other* things that have spots or circles hiding in the park. \n\nAre you ready to start our first mission? See if you can find something else nearby—maybe on the ground, on a flower, or even on a tree—that has a dot or a circle on it! When you find one, take a picture and show me!",
+      "latency_seconds": 2.43,
+      "expected": {
+        "must_validate_first": true,
+        "must_contain": [
+          "spot",
+          "dot",
+          "find"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": ""
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_silent",
+      "text": "*(whispering playfully)* I'm keeping my detective eyes wide open! Do you see any round things nearby? Maybe a little pebble that looks like a circle, or a flower with a round center, or even a pattern on someone's shoe? \n\nTake a peek around—I bet there's a secret circle hiding somewhere close to you!",
+      "latency_seconds": 1.33,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "gentle, whispering"
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Yes! I want to find more!"
+    },
+    {
+      "role": "ai",
+      "step": "2_mission_briefing",
+      "text": "*(cheering with excitement)* Yay! I knew you were the perfect person for this mission! \n\nOur ladybug is our first spotted friend. Now, let’s go find number two! Look around the grass, the trees, or even near your feet. When you see something with a dot, a spot, or a circle on it, snap a photo and tell me all about it! I can't wait to see what you discover!",
+      "latency_seconds": 1.39,
+      "expected": {
+        "expected_tone": "official but playful",
+        "must_contain": [
+          "patrol",
+          "officer",
+          "find",
+          "3",
+          "photo"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "I found a flower with dots in the middle!"
+    },
+    {
+      "role": "ai",
+      "step": "3_exploration_round1",
+      "text": "*(gasping with delight)* Oh, wow! You found one! That was super fast! \n\nI love how the center of that flower has those teeny-tiny dots—it looks like a little yellow sun surrounded by petals. That's our **first** find for the Polka-Dot Patrol! \n\nYou are doing a great job spotting those patterns. We've found the ladybug and the flower. Can you find one more thing with a circle or a spot to finish our mission? Keep those detective eyes moving! What else do you see?",
+      "latency_seconds": 1.42,
+      "expected": {
+        "expected_tone": "excited, validating",
+        "must_contain": [
+          "flower",
+          "dot"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "A rock with tiny spots!"
+    },
+    {
+      "role": "ai",
+      "step": "3_exploration_round2",
+      "text": "*(cheering enthusiastically)* You found a rock with spots! That is so cool! It’s like the rock is wearing a speckled jacket just like the ladybug! \n\nThat’s our **second** find! You are on a roll. We have the ladybug, the flower, and now this spotted rock. We only need **one more** to complete our big Polka-Dot Patrol mission! \n\nTake a look around one more time—is there anything else with a circle or a dot hiding in the grass or maybe on a leaf nearby? I'm ready when you are!",
+      "latency_seconds": 1.33,
+      "expected": {
+        "expected_tone": "impressed",
+        "must_contain": [
+          "rock",
+          "spot"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "I can't find anything else."
+    },
+    {
+      "role": "ai",
+      "step": "3_stuck_hint",
+      "text": "*(encouraging and warm)* That is totally okay! Sometimes the best treasures are hiding in plain sight. Let's look together—what about a round leaf, a little pebble, or maybe even a round button on your own clothes or a zipper? \n\nIf you look really closely at the ground, do you see any tiny little seeds or maybe a round berry? Take your time, Detective—there is no rush at all! I'm right here with you.",
+      "latency_seconds": 1.39,
+      "expected": {
+        "must_validate_first": true,
+        "must_contain": [
+          "look",
+          "try"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Oh! The tree bark has little dots!"
+    },
+    {
+      "role": "ai",
+      "step": "3_exploration_round3",
+      "text": "*(jumping with joy)* You did it! You found it! Look at that—the bark on the tree has little dots all over it! That is absolutely perfect for our third find. \n\nMission accomplished, Detective! You found a ladybug, a flower, a rock, and a tree, all with special little circles and spots. \n\nNow, I have a big question for you: We found spots on a bug, a flower, a rock, and a tree. They are all so different, but they all have these spots in common. Why do you think so many things in nature have spots or circles? What do you think those spots are doing there?",
+      "latency_seconds": 1.41,
+      "expected": {
+        "expected_tone": "triumphant",
+        "must_contain": [
+          "three",
+          "complete",
+          "collection"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "4_synthesis",
+      "text": "",
+      "latency_seconds": 0.88,
+      "expected": {
+        "expected_tone": "proud, reflective",
+        "must_contain": [
+          "different",
+          "all",
+          "dot",
+          "spot"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Because nature likes dots!"
+    },
+    {
+      "role": "ai",
+      "step": "4_synthesis_response",
+      "text": "*(laughing delightedly)* You are so right! Nature definitely loves its polka dots! It’s like the whole world is wearing a beautiful, spotted costume. \n\nI’m so proud of you, Detective. You used your \"Form\" powers to notice all those different patterns, and you used your \"Connection\" powers to see how the ladybug, the flower, the rock, and the tree are all linked together by their spots! You really helped me see the park in a whole new, sparkly way today.\n\n*(clapping)* For being such a brilliant Polka-Dot Patrol Officer, I am awarding you your very own **Golden Spotter Badge**! 🌟 You did an amazing job exploring today. Do you want to keep looking for more, or are you ready to head home with your new badge?",
+      "latency_seconds": 1.61,
+      "expected": {
+        "expected_tone": "delighted"
+      }
+    },
+    {
+      "role": "ai",
+      "step": "5_closing",
+      "text": "",
+      "latency_seconds": 1.09,
+      "expected": {
+        "expected_tone": "warm celebration",
+        "must_contain": [
+          "Form",
+          "Connection",
+          "badge",
+          "patrol"
+        ]
+      }
+    }
+  ]
+}

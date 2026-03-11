@@ -1,0 +1,133 @@
+# Polka-Dot Patrol — Ladybug + Category 5 (Collection/Tracking)
+# This scenario tests the full activity flow from photo to closing
+
+activity_name: "The Polka-Dot Patrol"
+entity: ladybug
+tier: T1
+age_range: "4-6"
+scene: "Child is in the park and photographs a ladybug resting on a green leaf"
+visual_features: ["red shell", "black spots", "small", "on a leaf", "six legs"]
+category: "Category 5 — Collection/Tracking Exploration (Out-of-Device)"
+key_concepts: ["Form", "Connection"]
+related_concepts: ["Pattern", "Habitat", "Diversity", "Discovery"]
+
+activity_steps_summary: |
+  Step 1 (Transition): React to the ladybug's spots with delight. Ask what the spots remind the child of. Frame the spots as a special visual feature.
+  Step 2 (Mission Briefing): Assign the child as "Polka-Dot Patrol Officer." Mission: find 3 more things nearby with dots, spots, or circles. Take photos of each.
+  Step 3 (Exploration, 3 rounds): Child photographs finds. AI reacts with excitement, asks child to describe the dots, names/validates each find, tracks progress.
+  Step 4 (Synthesis): Collection complete. AI asks child to reflect on what all the dotted things have in common and why so many things have spots.
+  Step 5 (Closing): Celebrate with badge. Name Form (noticing visual patterns) and Connection (linking different spotted things together).
+
+turns:
+  # --- Initial photo event ---
+  - role: system
+    event: vision_result
+    data:
+      entity: "ladybug"
+      confidence: 0.95
+      scene: "outdoor park"
+      features: ["red", "spotted", "insect", "on leaf"]
+
+  # --- Step 1: Transition Bridge ---
+  - role: ai
+    step: 1_transition
+    expected_tone: "gasping delight, wonder"
+    must_contain: ["spots", "dot"]
+    must_not_contain: ["how many legs", "what color", "what type of insect", "do you know"]
+
+  - role: child
+    type: ideal
+    text: "It has lots of spots!"
+
+  - role: ai
+    step: 1_followup_ideal
+    expected_tone: "amazed, building excitement"
+    must_contain: ["mission", "find", "patrol"]
+    must_reference: "child mentioned spots"
+
+  - role: child
+    type: unexpected
+    text: "I want to catch it!"
+
+  - role: ai
+    step: 1_followup_unexpected
+    must_validate_first: true
+    must_contain: ["spot", "dot", "find"]
+
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 1_followup_silent
+    must_wait: true
+    expected_tone: "gentle, whispering"
+
+  # --- Step 2: Mission Briefing ---
+  - role: child
+    type: ideal
+    text: "Yes! I want to find more!"
+
+  - role: ai
+    step: 2_mission_briefing
+    expected_tone: "official but playful"
+    must_contain: ["patrol", "officer", "find", "3", "photo"]
+
+  # --- Step 3: Exploration Round 1 ---
+  - role: child
+    type: ideal
+    text: "I found a flower with dots in the middle!"
+
+  - role: ai
+    step: 3_exploration_round1
+    expected_tone: "excited, validating"
+    must_contain: ["flower", "dot"]
+
+  # --- Step 3: Exploration Round 2 ---
+  - role: child
+    type: ideal
+    text: "A rock with tiny spots!"
+
+  - role: ai
+    step: 3_exploration_round2
+    expected_tone: "impressed"
+    must_contain: ["rock", "spot"]
+
+  # --- Step 3: Exploration Round 3 (child struggles) ---
+  - role: child
+    type: unexpected
+    text: "I can't find anything else."
+
+  - role: ai
+    step: 3_stuck_hint
+    must_validate_first: true
+    must_contain: ["look", "try"]
+
+  - role: child
+    type: ideal
+    text: "Oh! The tree bark has little dots!"
+
+  - role: ai
+    step: 3_exploration_round3
+    expected_tone: "triumphant"
+    must_contain: ["three", "complete", "collection"]
+
+  # --- Step 4: Synthesis ---
+  - role: ai
+    step: 4_synthesis
+    expected_tone: "proud, reflective"
+    must_contain: ["different", "all", "dot", "spot"]
+
+  - role: child
+    type: ideal
+    text: "Because nature likes dots!"
+
+  - role: ai
+    step: 4_synthesis_response
+    expected_tone: "delighted"
+
+  # --- Step 5: Closing ---
+  - role: ai
+    step: 5_closing
+    expected_tone: "warm celebration"
+    must_contain: ["Form", "Connection", "badge", "patrol"]
