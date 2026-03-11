@@ -1,0 +1,10 @@
+[project]
+name = "wonderlens-loop1-prompt-optimization"
+version = "0.1.0"
+description = "Autoresearch-style prompt engineering for WonderLens activity conversations"
+requires-python = ">=3.10"
+dependencies = [
+    "google-genai>=1.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+]
