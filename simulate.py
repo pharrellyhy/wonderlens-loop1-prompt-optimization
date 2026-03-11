@@ -17,11 +17,11 @@ import yaml
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
-
-# --- Gemini via Vertex AI ---
 from google import genai
 from google.genai import types
+
+load_dotenv()
+
 
 client = genai.Client(
     vertexai=True,
@@ -71,7 +71,9 @@ def build_system_message(system_prompt, few_shot, context_template, scenario):
     return full_system
 
 
-def call_gemini(system_message, conversation_history, model_name="gemini-2.0-flash"):
+def call_gemini(
+    system_message, conversation_history, model_name="gemini-3.1-flash-lite-preview", max_retries=5
+):
     """Call Gemini via Vertex AI and return the response text."""
 
     # Build messages
@@ -80,16 +82,25 @@ def call_gemini(system_message, conversation_history, model_name="gemini-2.0-fla
         role = "user" if turn["role"] == "child" else "model"
         messages.append(types.Content(role=role, parts=[types.Part(text=turn["text"])]))
 
-    response = client.models.generate_content(
-        model=model_name,
-        contents=messages,
-        config=types.GenerateContentConfig(
-            system_instruction=system_message,
-            temperature=0.7,
-            max_output_tokens=500,
-        ),
-    )
-    return response.text
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=messages,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_message,
+                    temperature=0.7,
+                    max_output_tokens=500,
+                ),
+            )
+            return response.text
+        except Exception as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait = 2 ** attempt
+                print(f"    Rate limited, waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 def run_simulation(scenario_path, output_path="transcripts/latest.json"):
@@ -197,7 +208,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output", default="transcripts/latest.json", help="Output transcript path"
     )
-    parser.add_argument("--model", default="gemini-2.0-flash", help="Gemini model name")
+    parser.add_argument(
+        "--model", default="gemini-3.1-flash-lite-preview", help="Gemini model name"
+    )
     args = parser.parse_args()
 
     run_simulation(args.scenario, args.output)

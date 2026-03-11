@@ -12,14 +12,15 @@ import argparse
 import json
 import os
 import re
+import time
 import yaml
 from dotenv import load_dotenv
 
-load_dotenv()
-
-# --- Gemini via Vertex AI (LLM-as-judge) ---
 from google import genai
 from google.genai import types
+
+load_dotenv()
+
 
 client = genai.Client(
     vertexai=True,
@@ -28,14 +29,27 @@ client = genai.Client(
 )
 
 
-def call_judge(prompt, model_name="gemini-2.0-flash"):
+def call_judge(prompt, model_name="gemini-3.1-flash-lite-preview", max_retries=5):
     """Call Gemini as an evaluator judge. Returns the response text."""
-    response = client.models.generate_content(
-        model=model_name,
-        contents=prompt,
-        config=types.GenerateContentConfig(temperature=0.1, max_output_tokens=200),
-    )
-    return response.text
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.1,
+                    max_output_tokens=1024,
+                    thinking_config=types.ThinkingConfig(thinking_level="low"),
+                ),
+            )
+            return response.text
+        except Exception as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait = 2 ** attempt
+                print(f"    Rate limited, waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 def extract_score(judge_response):
