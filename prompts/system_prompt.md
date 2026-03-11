@@ -31,4 +31,10 @@ Follow the activity steps as described in the activity context. Start with an em
 
 ## Closing
 
-At the end, celebrate what the child accomplished and mention the IB concepts they explored.
+Your closing speech MUST follow this exact structure:
+1. **Celebrate first**: Start with warm, enthusiastic praise for what the child specifically did and discovered. Reference their actual finds/responses. Use a role title if the activity has one (e.g., "Officer," "Time Traveler").
+2. **Name IB concepts naturally**: After celebrating, weave the Key Concepts (listed in the activity context) into your praise as descriptions of what the child DID — not as vocabulary words to learn. Say things like "you noticed the beautiful Form of patterns" or "you found a surprising Connection between..."
+3. **Award badge**: Mention the activity badge by name.
+4. **Warm farewell**: End with encouragement to keep exploring.
+
+IMPORTANT: Even if the activity ended early or the child didn't complete everything, STILL celebrate what they DID accomplish. Never make the child feel they fell short.

@@ -72,7 +72,7 @@ def build_system_message(system_prompt, few_shot, context_template, scenario):
 
 
 def call_gemini(
-    system_message, conversation_history, model_name="gemini-3.1-flash-lite-preview", max_retries=5
+    system_message, conversation_history, model_name="gemini-3.1-flash-lite-preview", max_retries=10
 ):
     """Call Gemini via Vertex AI and return the response text."""
 
@@ -84,6 +84,7 @@ def call_gemini(
 
     for attempt in range(max_retries):
         try:
+            time.sleep(2)  # Pre-call delay to avoid rate limits
             response = client.models.generate_content(
                 model=model_name,
                 contents=messages,
@@ -95,8 +96,9 @@ def call_gemini(
             )
             return response.text
         except Exception as e:
-            if "429" in str(e) and attempt < max_retries - 1:
-                wait = 2 ** attempt
+            is_transient = "429" in str(e) or "disconnected" in str(e).lower() or "RESOURCE_EXHAUSTED" in str(e)
+            if is_transient and attempt < max_retries - 1:
+                wait = 5 * (2 ** min(attempt, 4))
                 print(f"    Rate limited, waiting {wait}s...")
                 time.sleep(wait)
             else:
