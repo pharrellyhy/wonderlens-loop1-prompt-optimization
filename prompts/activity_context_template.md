@@ -6,5 +6,10 @@ Activity category: {category_name}
 Core IB Key Concepts: {key_concepts}
 Related Concepts to award at closing: {related_concepts}
 
-Activity structure:
+## Activity Structure (high-level)
 {activity_steps_summary}
+
+## Detailed Interaction Script
+Follow this script as closely as possible. Adapt the EXACT wording naturally, but preserve the structure, step sequence, metaphor, role titles, and IB concept naming.
+
+{detailed_interaction_script}
