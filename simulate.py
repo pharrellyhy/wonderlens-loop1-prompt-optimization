@@ -20,15 +20,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# --- Gemini via Vertex AI ---
-from google import genai
-from google.genai import types
+# --- LLM via OpenAI-compatible API ---
+from openai import OpenAI
 
-client = genai.Client(
-    vertexai=True,
-    project=os.environ["GOOGLE_CLOUD_PROJECT"],
-    location=os.environ["GOOGLE_CLOUD_LOCATION"],
-)
+SIM_BASE_URL = os.environ.get("SIM_BASE_URL", os.environ.get("EVAL_BASE_URL", "https://api.openai.com/v1"))
+SIM_API_KEY = os.environ.get("SIM_API_KEY", os.environ.get("EVAL_API_KEY", os.environ.get("OPENAI_API_KEY", "")))
+
+sim_client = OpenAI(base_url=SIM_BASE_URL, api_key=SIM_API_KEY)
 
 
 def load_prompt_files():
@@ -129,32 +127,30 @@ def build_system_message(system_prompt, few_shot, context_template, scenario):
     return full_system
 
 
-SIM_MODEL = os.environ.get("SIM_MODEL", "gemini-3.1-flash-lite-preview")
+SIM_MODEL = os.environ.get("SIM_MODEL", "gpt-5.2")
 
 
 def call_gemini(
     system_message, conversation_history, model_name=None
 ):
-    """Call Gemini via Vertex AI and return the response text."""
+    """Call LLM via OpenAI-compatible API and return the response text."""
     if model_name is None:
         model_name = SIM_MODEL
 
     # Build messages
-    messages = []
+    messages = [{"role": "system", "content": system_message}]
     for turn in conversation_history:
-        role = "user" if turn["role"] == "child" else "model"
-        messages.append(types.Content(role=role, parts=[types.Part(text=turn["text"])]))
+        role = "user" if turn["role"] == "child" else "assistant"
+        messages.append({"role": role, "content": turn["text"]})
 
-    response = client.models.generate_content(
+    response = sim_client.chat.completions.create(
         model=model_name,
-        contents=messages,
-        config=types.GenerateContentConfig(
-            system_instruction=system_message,
-            temperature=0.7,
-            max_output_tokens=500,
-        ),
+        messages=messages,
+        temperature=0.7,
+        max_tokens=500,
     )
-    return response.text
+    result = response.choices[0].message.content
+    return result if result else ""
 
 
 def parse_multimedia(ai_response):

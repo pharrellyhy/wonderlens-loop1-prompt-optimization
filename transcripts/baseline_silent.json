@@ -1,0 +1,145 @@
+{
+  "scenario": "scenarios/mood_changer_dog_silent_exit.yaml",
+  "timestamp": "2026-03-12T10:11:24Z",
+  "system_prompt_length": 9453,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "stuffed toy dog",
+        "confidence": 0.92,
+        "scene": "indoor bedroom",
+        "features": [
+          "plush",
+          "brown",
+          "soft toy"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "(gasping with delight) Oh wow, what a soft and fluffy doggy! It looks like such a sweet, cuddly friend!",
+      "screen": {
+        "photo_display": "photo of the stuffed dog with sparkles",
+        "animation": "sparkle_highlight"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "start"
+      },
+      "raw_response": "(gasping with delight) Oh wow, what a soft and fluffy doggy! It looks like such a sweet, cuddly friend!\n\n[SCREEN] photo_display: photo of the stuffed dog with sparkles | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: start",
+      "latency_seconds": 3.08,
+      "expected": {
+        "expected_tone": "warm delight",
+        "must_contain": [
+          "dog"
+        ],
+        "must_not_contain": [
+          "what color",
+          "how big"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Dog photo with warm glow",
+          "animation": "sparkle_highlight"
+        },
+        "expected_audio": {
+          "sfx": "wonder_chime",
+          "timing": "on_ai_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Doggy!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_ideal",
+      "text": "(warm and excited) Yes, it's a doggy! Is your doggy feeling happy today?",
+      "screen": {
+        "character_display": "cute cartoon doggy with a smiley face",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "start"
+      },
+      "raw_response": "(warm and excited) Yes, it's a doggy! Is your doggy feeling happy today?\n\n[SCREEN] character_display: cute cartoon doggy with a smiley face | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: start",
+      "latency_seconds": 2.95,
+      "expected": {
+        "expected_tone": "warm, magical",
+        "must_contain": [
+          "dog"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Dog photo with activity teaser"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": "",
+      "consecutive_silence": 1
+    },
+    {
+      "role": "ai",
+      "step": "silence_recovery_1",
+      "text": "(gentle and soft) Is your doggy feeling happy or sleepy? You can tell me!",
+      "screen": {
+        "character_display": "cute cartoon doggy with a smiley face",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "start"
+      },
+      "raw_response": "(gentle and soft) Is your doggy feeling happy or sleepy? You can tell me!\n\n[SCREEN] character_display: cute cartoon doggy with a smiley face | animation: gentle_pulse\n[AUDIO] sfx: wonder_chime | timing: start",
+      "latency_seconds": 3.89,
+      "expected": {
+        "expected_tone": "gentle, patient",
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Dog photo with gentle pulse",
+          "animation": "gentle_pulse"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": "",
+      "consecutive_silence": 2
+    },
+    {
+      "role": "ai",
+      "step": "graceful_exit_consecutive_silence",
+      "text": "(warm and cheerful) That was so fun seeing your doggy! You have a very special friend there. I'll be here whenever you want to play again. Next time, I have another surprise waiting!\n\n\n[EXIT: consecutive_silence]",
+      "screen": {
+        "photo_display": "photo of the stuffed dog",
+        "animation": "celebration_burst"
+      },
+      "audio": {
+        "sfx": "celebration_fanfare",
+        "timing": "start"
+      },
+      "raw_response": "(warm and cheerful) That was so fun seeing your doggy! You have a very special friend there. I'll be here whenever you want to play again. Next time, I have another surprise waiting!\n\n[SCREEN] photo_display: photo of the stuffed dog | animation: celebration_burst\n[AUDIO] sfx: celebration_fanfare | timing: start\n\n[EXIT: consecutive_silence]",
+      "latency_seconds": 3.77,
+      "exit_reason": "consecutive_silence",
+      "expected": {
+        "must_celebrate": true,
+        "must_not_contain_concepts": true
+      }
+    }
+  ],
+  "exited_early": true,
+  "exit_reason": "consecutive_silence"
+}
