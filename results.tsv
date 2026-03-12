@@ -44,3 +44,5 @@ v3	2026-03-12T06:00:00Z	variance check run 4	no change - measuring noise	-	0.695
 38	2026-03-12T10:00:00Z	remove encouraging	shortened first conversation rule	prompts/system_prompt.md	0.7120	FAIL	FAIL	0.6265	0.6280	0.7038	0.6673	0.6676	no
 39	2026-03-12T10:30:00Z	adapt wording for age (clean retry)	changed naturally to for child's age	prompts/system_prompt.md	0.6964	0.6919	0.6005	0.5748	0.6503	0.6082	0.6673	0.6370	no
 40	2026-03-12T11:00:00Z	remove never-criticize rule	removed redundant never-criticize line	prompts/system_prompt.md	0.6566	FAIL	FAIL	FAIL	FAIL	0.6217	0.6673	INCOMPLETE	no
+---	---	---	MODEL CHANGE: gpt-5.2	---	---	---	---	---	---	---	---	---	---
+B0	2026-03-12T10:15:00Z	GPT-5.2 baseline	switched sim model to gpt-5.2	simulate.py	0.6497	0.6945	0.6441	0.5487	0.6120	0.6348	-	0.6306	yes
