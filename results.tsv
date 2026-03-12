@@ -47,3 +47,7 @@ v3	2026-03-12T06:00:00Z	variance check run 4	no change - measuring noise	-	0.695
 ---	---	---	MODEL CHANGE: gpt-5.2	---	---	---	---	---	---	---	---	---	---
 B0	2026-03-12T10:15:00Z	GPT-5.2 baseline	switched sim model to gpt-5.2	simulate.py	0.6497	0.6945	0.6441	0.5487	0.6120	0.6348	-	0.6306	yes
 2	2026-03-12T12:00:00Z	simplified closing to 4 concise bullets	replaced verbose closing with concise version	prompts/system_prompt.md	0.6875	0.6507	0.6594	0.5441	0.6244	0.6084	0.646	0.6291	no
+3	2026-03-12T12:30:00Z	exact key vocabulary instruction	added exact key vocabulary bullet to Activity Flow	prompts/system_prompt.md	0.7179	0.684	0.6227	0.6161	0.6231	0.6978	0.646	0.6603	yes
+4	2026-03-12T13:00:00Z	fix few-shot with multimedia and hook-compliant turn 1	added SCREEN/AUDIO to few-shot, removed question from turn 1	prompts/few_shot.md	0.6907	0.6932	0.5929	0.5894	0.6634	0.5937	0.660	0.6539	no
+5	2026-03-12T13:30:00Z	compress transition rule	shortened transition to 2 lines	prompts/system_prompt.md	0.6982	0.6347	0.0	0.5461	0.6386	0.6591	0.660	0.5294	no
+6	2026-03-12T14:00:00Z	per-turn checklist for multimedia	added 3-point verify checklist at end	prompts/system_prompt.md	0.6281	0.6791	0.6305	0.5935	0.6344	0.6264	0.660	0.6320	no
