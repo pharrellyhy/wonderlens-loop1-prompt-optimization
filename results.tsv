@@ -46,3 +46,4 @@ v3	2026-03-12T06:00:00Z	variance check run 4	no change - measuring noise	-	0.695
 40	2026-03-12T11:00:00Z	remove never-criticize rule	removed redundant never-criticize line	prompts/system_prompt.md	0.6566	FAIL	FAIL	FAIL	FAIL	0.6217	0.6673	INCOMPLETE	no
 ---	---	---	MODEL CHANGE: gpt-5.2	---	---	---	---	---	---	---	---	---	---
 B0	2026-03-12T10:15:00Z	GPT-5.2 baseline	switched sim model to gpt-5.2	simulate.py	0.6497	0.6945	0.6441	0.5487	0.6120	0.6348	-	0.6306	yes
+2	2026-03-12T12:00:00Z	simplified closing to 4 concise bullets	replaced verbose closing with concise version	prompts/system_prompt.md	0.6875	0.6507	0.6594	0.5441	0.6244	0.6084	0.646	0.6291	no
