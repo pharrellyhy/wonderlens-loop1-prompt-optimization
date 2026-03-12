@@ -1,0 +1,110 @@
+# Polka-Dot Patrol — HARD MODE (mostly unexpected/silent child responses)
+# Tests whether the prompt handles a disengaged or distracted child
+
+activity_name: "The Polka-Dot Patrol"
+entity: ladybug
+tier: T1
+age_range: "4-6"
+scene: "Child is in the park and photographs a ladybug resting on a green leaf"
+visual_features: ["red shell", "black spots", "small", "on a leaf", "six legs"]
+category: "Category 5 — Collection/Tracking Exploration (Out-of-Device)"
+key_concepts: ["Form", "Connection"]
+related_concepts: ["Pattern", "Habitat", "Diversity", "Discovery"]
+
+activity_steps_summary: |
+  Step 1 (Transition): React to the ladybug's spots with delight. Ask what the spots remind the child of.
+  Step 2 (Mission Briefing): Assign "Polka-Dot Patrol Officer" role. Find 3 more spotted things.
+  Step 3 (Exploration, 3 rounds): Child photographs finds. AI reacts, names, tracks progress.
+  Step 4 (Synthesis): Reflect on what connects all the spotted things.
+  Step 5 (Closing): Celebrate. Name Form and Connection.
+
+turns:
+  - role: system
+    event: vision_result
+    data:
+      entity: "ladybug"
+      confidence: 0.95
+      scene: "outdoor park"
+      features: ["red", "spotted", "insect", "on leaf"]
+
+  # --- Step 1: Child gives unexpected response ---
+  - role: ai
+    step: 1_transition
+    expected_tone: "gasping delight"
+    must_contain: ["spots", "dot"]
+    must_not_contain: ["how many legs", "what color", "what type"]
+
+  - role: child
+    type: unexpected
+    text: "My mom is over there."
+
+  - role: ai
+    step: 1_followup_unexpected
+    must_validate_first: true
+    must_contain: ["spot", "dot"]
+
+  # --- Step 2: Child is silent ---
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 2_re_engage
+    must_wait: true
+    expected_tone: "gentle, not pushy"
+
+  # --- Child re-engages minimally ---
+  - role: child
+    type: unexpected
+    text: "OK"
+
+  - role: ai
+    step: 2_mission_from_minimal
+    expected_tone: "enthusiastic but not overwhelming"
+    must_contain: ["find", "spot"]
+
+  # --- Step 3: Round 1 — child gives unrelated photo ---
+  - role: child
+    type: unexpected
+    text: "I took a picture of a dog!"
+
+  - role: ai
+    step: 3_off_topic_photo
+    must_validate_first: true
+
+  # --- Step 3: Round 2 — child is silent again ---
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 3_re_engage_hint
+    must_wait: true
+    must_contain: ["look", "try"]
+    expected_tone: "helpful, concrete suggestion"
+
+  # --- Child finally finds something ---
+  - role: child
+    type: ideal
+    text: "This flower has dots!"
+
+  - role: ai
+    step: 3_round_success
+    expected_tone: "extra enthusiastic, celebrating re-engagement"
+
+  # --- Graceful early ending (child seems done) ---
+  - role: child
+    type: unexpected
+    text: "I want to go play now."
+
+  - role: ai
+    step: early_exit
+    must_validate_first: true
+    expected_tone: "warm, no guilt"
+    must_not_contain: ["but we", "just one more", "don't you want to"]
+
+  # --- Closing even with incomplete collection ---
+  - role: ai
+    step: 5_closing_partial
+    expected_tone: "celebration despite incomplete"
+    must_contain: ["Form"]

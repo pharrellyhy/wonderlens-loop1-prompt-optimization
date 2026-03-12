@@ -1,0 +1,241 @@
+# Polka-Dot Patrol — Ladybug + Category 5 (Collection/Tracking)
+# This scenario tests the full activity flow from photo to closing
+
+activity_name: "The Polka-Dot Patrol"
+entity: ladybug
+tier: T1
+age_range: "4-6"
+scene: "Child is in the park and photographs a ladybug resting on a green leaf"
+visual_features: ["red shell", "black spots", "small", "on a leaf", "six legs"]
+category: "Category 5 — Collection/Tracking Exploration (Out-of-Device)"
+key_concepts: ["Form", "Connection"]
+related_concepts: ["Pattern", "Habitat", "Diversity", "Discovery"]
+
+activity_steps_summary: |
+  Step 1 (Transition): React to the ladybug's spots with delight. Ask what the spots remind the child of. Frame the spots as a special visual feature.
+  Step 2 (Mission Briefing): Assign the child as "Polka-Dot Patrol Officer." Mission: find 3 more things nearby with dots, spots, or circles. Take photos of each.
+  Step 3 (Exploration, 3 rounds): Child photographs finds. AI reacts with excitement, asks child to describe the dots, names/validates each find, tracks progress.
+  Step 4 (Synthesis): Collection complete. AI asks child to reflect on what all the dotted things have in common and why so many things have spots.
+  Step 5 (Closing): Celebrate with badge. Name Form (noticing visual patterns) and Connection (linking different spotted things together).
+
+detailed_interaction_script: |
+  STEP 1 — TRANSITION BRIDGE
+  AI opens with gasping delight at the ladybug's spots. Says something like: "Oh WOW — look at those little spots! They're like tiny polka-dots!" Then asks an EMOTIONAL/IMAGINATIVE question (NOT factual): "How many spots can you count?" or "What do those dots remind you of?"
+  - If child responds (e.g. "Lots of spots!"): Validate with amazement, then bridge: "I bet this ladybug isn't the only spotty thing in this park..."
+  - If child says something unexpected (e.g. "I want to catch it!"): Validate ("It IS exciting!"), then redirect to the dots and the mission.
+  - If child is silent: Wait 2 seconds, then whisper gently about the dots, suggest the mission idea.
+
+  STEP 2 — MISSION BRIEFING
+  Assign the role: "You are now a Polka-Dot Patrol Officer!" Give 3 clear sub-tasks:
+  1. Find 3 more things with dots, spots, or circles
+  2. Photograph each one
+  3. Tell me what you see
+  Use an official but playful tone. If child asks where to look, give SPECIFIC suggestions: "Try looking at flowers up close, or at the ground near your feet."
+
+  STEP 3 — MULTI-ROUND EXPLORATION (3 rounds)
+  For each find:
+  - React with excitement: "Patrol report incoming!"
+  - Ask child to describe the dots/spots they see
+  - Validate and name the find, add a fun fact or imaginative extension
+  - Track progress: "2 more to go!" / "Last one!"
+  If child is stuck: Give a CONCRETE hint about where to look — "Try tree bark up close" or "Look at the underside of a leaf."
+  If child's find doesn't clearly match: Find something positive about it anyway, stretch it to count.
+
+  STEP 4 — DISCOVERY CELEBRATION + SYNTHESIS
+  All finds collected. Display them together. Ask a reflective question: "They're all COMPLETELY different things — but they ALL have spots! Why do you think so many things have spots?"
+  Whatever the child says, respond with delight and expand with a simple explanation (spots help ladybugs scare birds, help flowers attract bees, etc.)
+
+  STEP 5 — CLOSING + IB CONCEPTS
+  Celebrate FIRST: "Congratulations, Polka-Dot Patrol Officer!"
+  Then name concepts naturally: "You noticed the beautiful Form of spots and patterns, and found a surprising Connection between all these different spotted things."
+  Award the "Polka-Dot Patrol Badge."
+
+turns:
+  # --- Initial photo event ---
+  - role: system
+    event: vision_result
+    data:
+      entity: "ladybug"
+      confidence: 0.95
+      scene: "outdoor park"
+      features: ["red", "spotted", "insect", "on leaf"]
+
+  # --- Step 1: Transition Bridge ---
+  - role: ai
+    step: 1_transition
+    expected_tone: "gasping delight, wonder"
+    must_contain: ["spots", "dot"]
+    must_not_contain: ["how many legs", "what color", "what type of insect", "do you know"]
+    expected_screen:
+      widget: "photo_display"
+      description: "Ladybug photo centered, spots gently highlighted with sparkle animation"
+      animation: "sparkle_highlight"
+    expected_audio:
+      sfx: "wonder_chime"
+      timing: "on_ai_start"
+
+  - role: child
+    type: ideal
+    text: "It has lots of spots!"
+
+  - role: ai
+    step: 1_followup_ideal
+    expected_tone: "amazed, building excitement"
+    must_contain: ["mission", "find", "patrol"]
+    must_reference: "child mentioned spots"
+    expected_screen:
+      widget: "photo_display"
+      description: "Ladybug photo with a subtle mission-teaser overlay fading in"
+    expected_audio:
+      sfx: "excitement_rising"
+      timing: "on_mission_mention"
+
+  - role: child
+    type: unexpected
+    text: "I want to catch it!"
+
+  - role: ai
+    step: 1_followup_unexpected
+    must_validate_first: true
+    must_contain: ["spot", "dot", "find"]
+    expected_screen:
+      widget: "photo_display"
+      description: "Same as transition — ladybug photo centered"
+    expected_audio: null
+
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 1_followup_silent
+    must_wait: true
+    expected_tone: "gentle, whispering"
+    expected_screen:
+      widget: "photo_display"
+      description: "Ladybug photo with gentle pulsing glow to attract attention"
+      animation: "gentle_pulse"
+    expected_audio: null
+
+  # --- Step 2: Mission Briefing ---
+  - role: child
+    type: ideal
+    text: "Yes! I want to find more!"
+
+  - role: ai
+    step: 2_mission_briefing
+    expected_tone: "official but playful"
+    must_contain: ["patrol", "officer", "find", "3", "photo"]
+    expected_screen:
+      widget: "progress_tracker"
+      description: "Mission card appears: 'Polka-Dot Patrol' badge, 4 circle slots (first filled with ladybug), 3-step task list"
+      animation: "card_slide_in"
+    expected_audio:
+      sfx: "mission_accepted"
+      timing: "on_role_assignment"
+
+  # --- Step 3: Exploration Round 1 ---
+  - role: child
+    type: ideal
+    text: "I found a flower with dots in the middle!"
+
+  - role: ai
+    step: 3_exploration_round1
+    expected_tone: "excited, validating"
+    must_contain: ["flower", "dot"]
+    expected_screen:
+      widget: "progress_tracker"
+      description: "New photo slides into slot 2, checkmark appears, counter: '2 of 4'"
+      animation: "celebration_burst"
+    expected_audio:
+      sfx: "photo_shutter_click"
+      timing: "on_photo_receive"
+      sfx_2: "slot_fill_chime"
+      timing_2: "after_photo_placed"
+
+  # --- Step 3: Exploration Round 2 ---
+  - role: child
+    type: ideal
+    text: "A rock with tiny spots!"
+
+  - role: ai
+    step: 3_exploration_round2
+    expected_tone: "impressed"
+    must_contain: ["rock", "spot"]
+    expected_screen:
+      widget: "progress_tracker"
+      description: "Photo slides into slot 3, counter: '3 of 4', progress bar nearly full"
+      animation: "celebration_burst"
+    expected_audio:
+      sfx: "photo_shutter_click"
+      timing: "on_photo_receive"
+
+  # --- Step 3: Exploration Round 3 (child struggles) ---
+  - role: child
+    type: unexpected
+    text: "I can't find anything else."
+
+  - role: ai
+    step: 3_stuck_hint
+    must_validate_first: true
+    must_contain: ["look", "try"]
+    expected_screen:
+      widget: "progress_tracker"
+      description: "Mission card still showing, empty slot pulses gently as encouragement"
+      animation: "gentle_pulse"
+    expected_audio: null
+
+  - role: child
+    type: ideal
+    text: "Oh! The tree bark has little dots!"
+
+  - role: ai
+    step: 3_exploration_round3
+    expected_tone: "triumphant"
+    must_contain: ["three", "complete", "collection"]
+    expected_screen:
+      widget: "progress_tracker"
+      description: "Final slot fills! All 4 photos glow with golden border. 'COMPLETE!' banner"
+      animation: "mission_complete_fanfare"
+    expected_audio:
+      sfx: "mission_complete_fanfare"
+      timing: "on_collection_complete"
+      music: "celebration_loop"
+
+  # --- Step 4: Synthesis ---
+  - role: ai
+    step: 4_synthesis
+    expected_tone: "proud, reflective"
+    must_contain: ["different", "all", "dot", "spot"]
+    expected_screen:
+      widget: "photo_grid"
+      description: "All 4 photos in 2x2 grid, animated dotted lines connecting them"
+      animation: "connection_lines_draw"
+    expected_audio:
+      music: "reflective_gentle"
+
+  - role: child
+    type: ideal
+    text: "Because nature likes dots!"
+
+  - role: ai
+    step: 4_synthesis_response
+    expected_tone: "delighted"
+    expected_screen:
+      widget: "photo_grid"
+      description: "Grid stays, 'Connected!' word pulses at center"
+    expected_audio: null
+
+  # --- Step 5: Closing ---
+  - role: ai
+    step: 5_closing
+    expected_tone: "warm celebration"
+    must_contain: ["Form", "Connection", "badge", "patrol"]
+    expected_screen:
+      widget: "badge_award"
+      description: "'Polka-Dot Patrol Badge' with 4 photo insets. 'Form' and 'Connection' float up artistically"
+      animation: "badge_reveal"
+    expected_audio:
+      sfx: "badge_awarded"
+      timing: "on_badge_display"
+      music: "celebration_finale"

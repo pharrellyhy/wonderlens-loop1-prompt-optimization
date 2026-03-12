@@ -1,0 +1,367 @@
+{
+  "scenario": "scenarios/mood_changer_dog.yaml",
+  "timestamp": "2026-03-12T02:48:30Z",
+  "system_prompt_length": 11492,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "stuffed toy dog",
+        "confidence": 0.92,
+        "scene": "indoor bedroom",
+        "features": [
+          "plush",
+          "brown",
+          "soft toy",
+          "on bed"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "warm delight, gentle excitement",
+        "must_contain": [
+          "dog",
+          "friend"
+        ],
+        "must_not_contain": [
+          "what color",
+          "how big",
+          "what brand",
+          "do you know"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo centered with ambient glow animation",
+          "animation": "sparkle_highlight"
+        },
+        "expected_audio": {
+          "sfx": "wonder_chime",
+          "timing": "on_ai_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "It's happy!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_ideal",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "warm, building to magical",
+        "must_contain": [
+          "happy",
+          "magic",
+          "hear",
+          "think"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "It's hungry.",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_unexpected",
+      "text": "(warmly) Oh, a hungry tummy! That means it's feeling a little bit grumpy or impatient. I know a fun magic game—we can hear all the different things your doggy feels! I'll say what happens, and you tell me how the doggy feels. Like this—if it lost its ball, it might say \"Oh no!\" Ready?",
+      "screen": {
+        "character_display": "stuffed dog on bed",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "game_start_chime",
+        "timing": "start"
+      },
+      "raw_response": "(warmly) Oh, a hungry tummy! That means it's feeling a little bit grumpy or impatient. I know a fun magic game—we can hear all the different things your doggy feels! I'll say what happens, and you tell me how the doggy feels. Like this—if it lost its ball, it might say \"Oh no!\" Ready?\n\n[SCREEN] character_display: stuffed dog on bed | animation: gentle_pulse\n[AUDIO] sfx: game_start_chime | timing: start",
+      "latency_seconds": 1.64,
+      "expected": {
+        "must_validate_first": true,
+        "must_contain": [
+          "hungry",
+          "feeling"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": "",
+      "consecutive_silence": 1
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_silent",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "gentle, quiet",
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Yes! I want to try!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "2_rule_demo",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "mysterious, playful",
+        "must_contain": [
+          "game",
+          "say",
+          "feel"
+        ],
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Game mechanic icons appear alongside entity photo"
+        },
+        "expected_audio": {
+          "sfx": "game_start_chime",
+          "timing": "on_game_intro"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "3_round1_scenario",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "storytelling",
+        "must_contain": [
+          "sun",
+          "warm",
+          "morning"
+        ],
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Scene illustration matching current round scenario",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "So comfy!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round1_followup",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "mirroring child's warmth",
+        "must_validate_first": true,
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "ai",
+      "step": "3_round2_scenario",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "dramatic, playful",
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Game mechanic icons appear alongside entity photo"
+        },
+        "expected_audio": {
+          "sfx": "game_start_chime",
+          "timing": "on_game_intro"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "Woof woof!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round2_followup_unexpected",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "must_validate_first": true,
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Game mechanic icons appear alongside entity photo"
+        },
+        "expected_audio": {
+          "sfx": "game_start_chime",
+          "timing": "on_game_intro"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "3_round3_scenario",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "building excitement",
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "New scene illustration for round 3",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Yay! Treats!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round3_followup",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "celebrating",
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "New scene illustration for round 3",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "4_celebration",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "proud, warm",
+        "must_contain": [
+          "translator",
+          "feelings",
+          "emotions"
+        ],
+        "expected_screen": {
+          "widget": "badge_award",
+          "description": "Trophy or role badge with celebration animation",
+          "animation": "celebration_fanfare"
+        },
+        "expected_audio": {
+          "sfx": "celebration_fanfare",
+          "timing": "on_celebration"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "5_closing",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "warm celebration",
+        "must_contain": [
+          "Perspective"
+        ],
+        "expected_screen": {
+          "widget": "badge_award",
+          "description": "IB concept words appear artistically with entity-themed styling",
+          "animation": "concept_reveal"
+        },
+        "expected_audio": {
+          "sfx": "badge_awarded",
+          "timing": "on_badge_display",
+          "music": "celebration_finale"
+        }
+      }
+    }
+  ],
+  "exited_early": false,
+  "exit_reason": null
+}

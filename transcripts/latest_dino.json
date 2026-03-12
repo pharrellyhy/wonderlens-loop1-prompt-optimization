@@ -1,0 +1,323 @@
+{
+  "scenario": "scenarios/time_machine_dinosaur.yaml",
+  "timestamp": "2026-03-12T02:51:26Z",
+  "system_prompt_length": 11472,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "toy dinosaur",
+        "confidence": 0.94,
+        "scene": "indoor playroom",
+        "features": [
+          "green",
+          "T-Rex",
+          "toy",
+          "plastic",
+          "big teeth"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "(gasping with delight) WHOA! Look at that green dinosaur! Those big teeth and that long tail are so amazing!",
+      "screen": {
+        "widget_type": "photo_display",
+        "animation": "sparkle_highlight"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "immediate"
+      },
+      "raw_response": "(gasping with delight) WHOA! Look at that green dinosaur! Those big teeth and that long tail are so amazing!\n\n[SCREEN] widget_type: photo_display | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: immediate",
+      "latency_seconds": 3.3,
+      "expected": {
+        "expected_tone": "awe, excitement",
+        "must_contain": [
+          "dinosaur",
+          "roar"
+        ],
+        "must_not_contain": [
+          "what type",
+          "how many teeth",
+          "what color is",
+          "do you know"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo centered with ambient glow animation",
+          "animation": "sparkle_highlight"
+        },
+        "expected_audio": {
+          "sfx": "wonder_chime",
+          "timing": "on_ai_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "ROAR! It's my T-Rex!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_ideal",
+      "text": "(excited) Roar! That is a super loud, strong T-Rex roar! If this dinosaur could go on any adventure, where would it want to go?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(excited) Roar! That is a super loud, strong T-Rex roar! If this dinosaur could go on any adventure, where would it want to go?\n\n[SCREEN] widget_type: character_display | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 1.3,
+      "expected": {
+        "expected_tone": "matching energy, excited",
+        "must_contain": [
+          "time",
+          "adventure"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "It bites.",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_unexpected",
+      "text": "(giggling) Oh, a hungry dino! What if we used a time machine to find it a yummy snack in a big, steamy jungle?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "scene_transition"
+      },
+      "audio": {
+        "sfx": "scene_woosh",
+        "timing": "immediate"
+      },
+      "raw_response": "(giggling) Oh, a hungry dino! What if we used a time machine to find it a yummy snack in a big, steamy jungle? \n\n[SCREEN] widget_type: character_display | animation: scene_transition\n[AUDIO] sfx: scene_woosh | timing: immediate",
+      "latency_seconds": 1.15,
+      "expected": {
+        "must_validate_first": true,
+        "must_contain": [
+          "teeth",
+          "adventure"
+        ],
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": "",
+      "consecutive_silence": 1
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_silent",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "whispering dramatically",
+        "expected_screen": {
+          "widget": "photo_display",
+          "description": "Entity photo with subtle overlay building toward activity"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Yeah! Let's go!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "2_rule_demo",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "dramatic, storytelling",
+        "must_contain": [
+          "time machine",
+          "see"
+        ],
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Game mechanic icons appear alongside entity photo"
+        },
+        "expected_audio": {
+          "sfx": "game_start_chime",
+          "timing": "on_game_intro"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Big trees! And bugs!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round1",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "vivid, storytelling",
+        "must_contain": [
+          "jungle"
+        ],
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Scene illustration matching current round scenario",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "Hot! Fire everywhere!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round2",
+      "text": "(impressed) A rumbling volcano! It sounds so hot and loud! What does your dinosaur feel when it walks near the fire?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(impressed) A rumbling volcano! It sounds so hot and loud! What does your dinosaur feel when it walks near the fire?\n\n[SCREEN] widget_type: character_display | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 1.04,
+      "expected": {
+        "expected_tone": "dramatic",
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "New scene illustration for round 2",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "Dunno.",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round3_stuck",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "must_validate_first": true,
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "New scene illustration for round 3",
+          "animation": "scene_transition"
+        },
+        "expected_audio": {
+          "sfx": "scene_woosh",
+          "timing": "on_scenario_start"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "4_celebration",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "proud, warm",
+        "must_contain": [
+          "time",
+          "traveler"
+        ],
+        "expected_screen": {
+          "widget": "badge_award",
+          "description": "Trophy or role badge with celebration animation",
+          "animation": "celebration_fanfare"
+        },
+        "expected_audio": {
+          "sfx": "celebration_fanfare",
+          "timing": "on_celebration"
+        }
+      }
+    },
+    {
+      "role": "ai",
+      "step": "5_closing",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "warm celebration",
+        "must_contain": [
+          "Form",
+          "Causation"
+        ],
+        "expected_screen": {
+          "widget": "badge_award",
+          "description": "IB concept words appear artistically with entity-themed styling",
+          "animation": "concept_reveal"
+        },
+        "expected_audio": {
+          "sfx": "badge_awarded",
+          "timing": "on_badge_display",
+          "music": "celebration_finale"
+        }
+      }
+    }
+  ],
+  "exited_early": false,
+  "exit_reason": null
+}

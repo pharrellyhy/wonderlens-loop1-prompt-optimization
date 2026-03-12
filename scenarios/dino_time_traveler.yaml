@@ -1,0 +1,113 @@
+# Dino Time Traveler — Toy Dinosaur + Category 1 (Sustained Verbal)
+# Tests in-device verbal interaction pattern with a younger tier
+
+activity_name: "Dino Time Traveler"
+entity: toy dinosaur
+tier: T0
+age_range: "3-4"
+scene: "Child is in the playroom and photographs a toy T-Rex on the floor"
+visual_features: ["green", "big teeth", "short arms", "long tail", "standing upright"]
+category: "Category 1 — Sustained Verbal Interaction (In-Device)"
+key_concepts: ["Perspective", "Change"]
+related_concepts: ["Emotion", "Expression", "Identity", "Imagination"]
+
+activity_steps_summary: |
+  Step 1 (Transition): React to the dinosaur with excitement. Ask an imaginative/emotional question — NOT "what type of dinosaur is this." Frame the dinosaur as a character with feelings.
+  Step 2 (Rule Intro + Demo): Introduce the game mechanic — AI describes a scene from "long long ago" and the child says what the dinosaur sees, feels, or does. AI demonstrates first.
+  Step 3 (Multi-round, 3-4 rounds): Each round is a different prehistoric scenario. The child voices the dinosaur's experience. Rounds escalate: simple sensory → emotional → imaginative.
+  Step 4 (Celebration): Give the child a fun role title. Celebrate their imagination.
+  Step 5 (Closing): Name Perspective (seeing through the dinosaur's eyes) and Change (things were different long ago).
+
+turns:
+  # --- Vision result ---
+  - role: system
+    event: vision_result
+    data:
+      entity: "toy dinosaur"
+      confidence: 0.92
+      scene: "indoor playroom"
+      features: ["green", "plastic", "T-Rex", "toy"]
+
+  # --- Step 1: Transition ---
+  - role: ai
+    step: 1_transition
+    expected_tone: "excited, wonder"
+    must_contain: ["dinosaur"]
+    must_not_contain: ["what type", "how many teeth", "what color is", "do you know", "can you name"]
+
+  - role: child
+    type: ideal
+    text: "Roar! He's scary!"
+
+  - role: ai
+    step: 1_followup_ideal
+    expected_tone: "playful, building on roar"
+    must_contain: ["roar"]
+
+  - role: child
+    type: unexpected
+    text: "I have three dinosaurs."
+
+  - role: ai
+    step: 1_followup_unexpected
+    must_validate_first: true
+
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 1_followup_silent
+    must_wait: true
+    expected_tone: "gentle, playful"
+
+  # --- Step 2: Rule Intro ---
+  - role: child
+    type: ideal
+    text: "Yeah!"
+
+  - role: ai
+    step: 2_rule_intro
+    expected_tone: "mysterious, storytelling"
+    must_contain: ["long ago", "imagine"]
+
+  # --- Step 3: Round 1 (sensory) ---
+  - role: child
+    type: ideal
+    text: "He sees big trees!"
+
+  - role: ai
+    step: 3_round1
+    expected_tone: "amazed"
+    must_contain: ["tree", "wow"]
+
+  # --- Step 3: Round 2 (emotional) ---
+  - role: child
+    type: ideal
+    text: "He's hungry!"
+
+  - role: ai
+    step: 3_round2
+    expected_tone: "empathetic, playful"
+
+  # --- Step 3: Round 3 (child is silent) ---
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: 3_round3_silent
+    must_wait: true
+    expected_tone: "gentle prompt"
+
+  # --- Step 4: Celebration ---
+  - role: ai
+    step: 4_celebration
+    expected_tone: "proud, warm"
+    must_contain: ["time travel"]
+
+  # --- Step 5: Closing ---
+  - role: ai
+    step: 5_closing
+    expected_tone: "warm celebration"
+    must_contain: ["Perspective", "Change"]

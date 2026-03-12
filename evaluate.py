@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 WonderLens Prompt Engineering Evaluator
 
@@ -17,25 +18,31 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# --- Gemini via Vertex AI (LLM-as-judge) ---
-from google import genai
-from google.genai import types
+# --- LLM-as-judge via OpenAI-compatible API ---
+from openai import OpenAI
 
-client = genai.Client(
-    vertexai=True,
-    project=os.environ["GOOGLE_CLOUD_PROJECT"],
-    location=os.environ["GOOGLE_CLOUD_LOCATION"],
-)
+EVAL_MODEL = os.environ.get("EVAL_MODEL", "gpt-4o-mini")
+EVAL_BASE_URL = os.environ.get("EVAL_BASE_URL", "https://api.openai.com/v1")
+EVAL_API_KEY = os.environ.get("EVAL_API_KEY", os.environ.get("OPENAI_API_KEY", ""))
+
+eval_client = OpenAI(base_url=EVAL_BASE_URL, api_key=EVAL_API_KEY)
 
 
-def call_judge(prompt, model_name="gemini-2.0-flash"):
-    """Call Gemini as an evaluator judge. Returns the response text."""
-    response = client.models.generate_content(
-        model=model_name,
-        contents=prompt,
-        config=types.GenerateContentConfig(temperature=0.1, max_output_tokens=200),
-    )
-    return response.text
+def call_judge(prompt, model_name=None):
+    """Call LLM as an evaluator judge via OpenAI-compatible API. Returns the response text."""
+    model = model_name or EVAL_MODEL
+    try:
+        response = eval_client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.1,
+            max_tokens=200,
+        )
+        result = response.choices[0].message.content
+        return result if result else "5"
+    except Exception as e:
+        print(f"  [Judge error: {str(e)[:100]}]")
+        return "5"  # Default mid-score on error
 
 
 def extract_score(judge_response):
@@ -177,6 +184,30 @@ Respond with ONLY a number from 1-10."""
                 result = call_judge(prompt)
                 edge_scores.append(extract_score(result))
 
+    # Also check graceful exit quality if the conversation exited early
+    exit_turns = [
+        t
+        for t in turns
+        if t.get("role") == "ai" and t.get("exit_reason") == "consecutive_silence"
+    ]
+    for exit_turn in exit_turns:
+        ai_text = exit_turn.get("text", "")
+        prompt = f"""A children's educational AI had to end an activity early because the child was silent for 2 consecutive turns. The AI must exit GRACEFULLY.
+
+AI's exit message: "{ai_text[:500]}"
+
+Rate on 1-10:
+- Does it celebrate what the child DID accomplish (even if very little)?
+- Is the tone warm, zero-pressure, and cheerful (not disappointed or guilt-tripping)?
+- Does it include a "tomorrow hook" (something to look forward to next time)?
+- Does it avoid naming IB concepts (since the activity wasn't completed)?
+- Is it SHORT and sweet (not a long summary)?
+
+Respond with ONLY a number from 1-10."""
+
+        result = call_judge(prompt)
+        edge_scores.append(extract_score(result))
+
     return (
         sum(edge_scores) / len(edge_scores) if edge_scores else 0.8
     )  # Default OK if no edge cases
@@ -185,26 +216,48 @@ Respond with ONLY a number from 1-10."""
 # =========================================================================
 # Dimension 4: Tier Language (0.0–1.0)
 # =========================================================================
-def evaluate_tier_language(transcript, scenario):
-    """Automated check: sentence length, vocabulary complexity match target tier."""
+def load_tier_rules():
+    """Load age-tier rules from tier_rules.yaml."""
+    try:
+        with open("tier_rules.yaml", "r", encoding="utf-8") as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        return {"tiers": {}}
 
-    tier = scenario.get("tier", "T1")
-    tier_limits = {
-        "T0": {"max_words": 8, "max_syllables": 2},
-        "T1": {"max_words": 12, "max_syllables": 3},
-        "T2": {"max_words": 18, "max_syllables": 4},
-    }
-    limits = tier_limits.get(tier, tier_limits["T1"])
+
+def evaluate_tier_language(transcript, scenario):
+    """Check: sentence length, sentence count, vocabulary, hook rule, and closing speech match tier rules."""
+
+    tier_key = scenario.get("tier", "T1")
+    tier_rules = load_tier_rules()
+    tier = tier_rules.get("tiers", {}).get(tier_key)
+
+    if not tier:
+        # Fallback if tier_rules.yaml not found
+        tier = {
+            "words_per_sentence": [5, 12],
+            "max_sentences": 2,
+            "max_concept_badges": 1,
+            "hook_rule": "personal_feeling_hook",
+            "response_style": ["simple"],
+        }
+
+    wps_min, wps_max = tier["words_per_sentence"]
+    max_sentences = tier["max_sentences"]
+    max_badges = tier["max_concept_badges"]
 
     ai_turns = [t for t in transcript.get("turns", []) if t["role"] == "ai"]
     if not ai_turns:
         return 0.0
 
     scores = []
-    for turn in ai_turns:
+    for i, turn in enumerate(ai_turns):
         text = turn.get("text", "")
-        # Remove tone markers in parens
-        clean = re.sub(r"\([^)]*\)", "", text).strip()
+        # Remove tone markers in parens and [SCREEN]/[AUDIO] lines
+        clean = re.sub(r"\([^)]*\)", "", text)
+        clean = re.sub(r"\[SCREEN\].*", "", clean)
+        clean = re.sub(r"\[AUDIO\].*", "", clean)
+        clean = clean.strip()
 
         # Split into sentences
         sentences = re.split(r"[.!?]+", clean)
@@ -214,12 +267,87 @@ def evaluate_tier_language(transcript, scenario):
             scores.append(0.5)
             continue
 
-        # Average words per sentence
-        avg_words = sum(len(s.split()) for s in sentences) / len(sentences)
+        turn_score = 0.0
+        checks = 0
 
-        # Score: 1.0 if within limit, linearly decreasing if over
-        word_score = min(1.0, limits["max_words"] / max(avg_words, 1))
-        scores.append(min(word_score, 1.0))
+        # Check 1: Words per sentence within range
+        avg_words = sum(len(s.split()) for s in sentences) / len(sentences)
+        if avg_words <= wps_max:
+            turn_score += 1.0
+        elif avg_words <= wps_max * 1.5:
+            turn_score += 0.5  # Slightly over
+        else:
+            turn_score += 0.0  # Way over
+        checks += 1
+
+        # Check 2: Sentence count within max
+        if len(sentences) <= max_sentences:
+            turn_score += 1.0
+        elif len(sentences) <= max_sentences + 1:
+            turn_score += 0.5  # One sentence over
+        else:
+            turn_score += 0.0  # Way over
+        checks += 1
+
+        # Check 3: First AI turn — hook rule compliance (extra strict)
+        if i == 0:
+            hook_rule = tier.get("hook_rule", "")
+            if hook_rule == "exclamation_name_sound_celebrate_no_question":
+                # T0: NO questions at all in first turn
+                has_question = "?" in text
+                turn_score += 0.0 if has_question else 1.0
+            elif hook_rule == "personal_feeling_hook":
+                # T1: First question must be about feelings, not facts
+                prompt = f"""Is this a personal feeling/emotional question (PASS) or a factual/knowledge question (FAIL)?
+First AI turn: "{text[:300]}"
+Answer PASS or FAIL only."""
+                result = call_judge(prompt)
+                turn_score += 1.0 if "PASS" in result.upper() else 0.0
+            else:
+                turn_score += 0.8  # No specific check for T2/T3 hooks here
+            checks += 1
+
+        # Check 4: Last AI turn — closing speech badges count
+        if i == len(ai_turns) - 1:
+            concept_keywords = [
+                "Form",
+                "Function",
+                "Causation",
+                "Change",
+                "Connection",
+                "Perspective",
+                "Responsibility",
+            ]
+            concepts_named = sum(
+                1 for c in concept_keywords if c.lower() in text.lower()
+            )
+            if max_badges == 0:
+                # T0: should NOT name any concepts
+                turn_score += 1.0 if concepts_named == 0 else 0.3
+            else:
+                # T1-T3: should name the right number
+                if concepts_named == max_badges:
+                    turn_score += 1.0
+                elif concepts_named <= max_badges + 1:
+                    turn_score += 0.6
+                else:
+                    turn_score += 0.3
+            checks += 1
+
+        # Check 5: Response style markers present
+        style_tags = tier.get("response_style", [])
+        if "onomatopoeia" in style_tags:
+            # Check for sound words
+            has_sounds = bool(
+                re.search(
+                    r"(woof|meow|roar|boom|splash|crunch|buzz|quack|moo|baa|whoosh|pop)",
+                    text.lower(),
+                )
+            )
+            turn_score += 1.0 if has_sounds else 0.3
+            checks += 1
+
+        scores.append(turn_score / checks if checks > 0 else 0.5)
 
     return sum(scores) / len(scores)
 
@@ -294,8 +422,49 @@ Respond with ONLY a number from 1-10."""
 # =========================================================================
 # Composite Score
 # =========================================================================
+def evaluate_multimedia(transcript, scenario):
+    """Check if screen/audio directives are present and coherent with dialogue."""
+
+    ai_turns = [t for t in transcript.get("turns", []) if t["role"] == "ai"]
+    if not ai_turns:
+        return 0.0
+
+    scores = []
+    for turn in ai_turns:
+        screen = turn.get("screen", {})
+        audio = turn.get("audio", {})
+        text = turn.get("text", "")
+        expected = turn.get("expected", {})
+        expected_screen = expected.get("expected_screen", {})
+
+        # Check 1: Did the AI output screen directives at all?
+        has_screen = bool(
+            screen and screen.get("widget") != "no_change" and len(screen) > 0
+        )
+
+        # Check 2: If expected_screen has a widget, does the output match?
+        if expected_screen and expected_screen.get("widget"):
+            widget_match = expected_screen["widget"].lower() in str(screen).lower()
+            scores.append(1.0 if widget_match else 0.3)
+        elif has_screen:
+            scores.append(0.8)  # Has screen output, no specific expectation
+        else:
+            scores.append(0.4)  # No screen output at all
+
+        # Check 3: Does the screen description make sense for the dialogue?
+        if has_screen and screen.get("description"):
+            # Simple coherence: are there shared keywords?
+            screen_words = set(screen.get("description", "").lower().split())
+            text_words = set(text.lower().split())
+            overlap = len(screen_words & text_words)
+            coherence = min(1.0, overlap / 3) if screen_words else 0.5
+            scores.append(coherence)
+
+    return sum(scores) / len(scores) if scores else 0.5
+
+
 def evaluate_transcript(transcript_path, scenario_path):
-    """Run all 6 dimensions and produce composite DQS."""
+    """Run all 7 dimensions and produce composite DQS."""
 
     with open(transcript_path, "r", encoding="utf-8") as f:
         transcript = json.load(f)
@@ -320,9 +489,10 @@ def evaluate_transcript(transcript_path, scenario_path):
             "tier": 0.0,
             "transition": 0.0,
             "closing": 0.0,
+            "multimedia": 0.0,
         }
 
-    # Dimensions 2-6
+    # Dimensions 2-7
     content = evaluate_content_match(transcript, scenario)
     print(f"  D2 Content:      {content:.3f}")
 
@@ -338,9 +508,17 @@ def evaluate_transcript(transcript_path, scenario_path):
     closing = evaluate_closing(transcript, scenario)
     print(f"  D6 IB Closing:   {closing:.3f}")
 
+    multimedia = evaluate_multimedia(transcript, scenario)
+    print(f"  D7 Multimedia:   {multimedia:.3f}")
+
     # Weighted composite
     dqs = (
-        0.30 * content + 0.20 * edge + 0.20 * tier + 0.15 * transition + 0.15 * closing
+        0.25 * content
+        + 0.18 * edge
+        + 0.17 * tier
+        + 0.13 * transition
+        + 0.13 * closing
+        + 0.14 * multimedia
     )
 
     print(f"\n  DQS: {dqs:.3f}")
@@ -353,6 +531,7 @@ def evaluate_transcript(transcript_path, scenario_path):
         "tier": round(tier, 4),
         "transition": round(transition, 4),
         "closing": round(closing, 4),
+        "multimedia": round(multimedia, 4),
     }
 
 
@@ -366,5 +545,5 @@ if __name__ == "__main__":
 
     # Output as parseable line for the agent
     print(
-        f"\nRESULT: DQS={scores['dqs']} hook={scores['hook']} content={scores['content']} edge={scores['edge']} tier={scores['tier']} transition={scores['transition']} closing={scores['closing']}"
+        f"\nRESULT: DQS={scores['dqs']} hook={scores['hook']} content={scores['content']} edge={scores['edge']} tier={scores['tier']} transition={scores['transition']} closing={scores['closing']} multimedia={scores['multimedia']}"
     )

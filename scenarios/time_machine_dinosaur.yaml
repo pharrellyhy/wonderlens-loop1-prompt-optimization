@@ -1,0 +1,225 @@
+activity_name: Dino Time Machine
+entity: toy dinosaur
+tier: T0
+age_range: 3-4
+scene: Child is in the playroom and photographs a toy T-Rex on the floor
+visual_features:
+- green
+- big teeth
+- small arms
+- long tail
+- plastic toy
+category: Category 1 — Sustained Verbal Interaction (In-Device)
+key_concepts:
+- Form
+- Causation
+related_concepts:
+- Structure
+- Adaptation
+- Discovery
+- Imagination
+activity_steps_summary: 'Step 1 (Transition): React to the dinosaur with awe. Ask something imaginative about what the dinosaur
+  might have been doing / where it was going. Emotional hook.
+
+  Step 2 (Rule + Demo): "Let''s pretend we have a time machine! I''ll take us to a place, and you tell me what your dinosaur
+  sees there." AI demos: "If we went to a jungle... your dino might see giant ferns!"
+
+  Step 3 (Multi-round, 3-4 rounds): Each round visits a different "time/place" (jungle, volcano, river, snowy mountain). Child
+  describes what the dinosaur sees/does. Escalate from simple to imaginative.
+
+  Step 4 (Celebration): Name the child as "Time Traveler" who showed their dinosaur amazing places.
+
+  Step 5 (Closing): Celebrate and name Form (dinosaur''s body features) and Causation (why dinosaurs had big teeth, small
+  arms — everything has a reason).
+
+  '
+detailed_interaction_script: 'STEP 1 — TRANSITION BRIDGE
+
+  React with awe: "WHOA — a dinosaur! Look at those big teeth and that powerful tail!" Ask imaginative: "If this dinosaur
+  could go ANYWHERE, where would it want to go?" NEVER ask "what type of dinosaur" or "how many teeth."
+
+  - Ideal: Validate with excitement, bridge: "What if we had a TIME MACHINE and could take it there?"
+
+  - Unexpected (e.g. "It''s just a toy"): Validate gently ("It IS a toy right now..."), redirect: "But what if we used our
+  imagination to make it REAL for 5 minutes?"
+
+  - Silent: Wait 2 seconds, build excitement: "I think this dinosaur looks like it wants an ADVENTURE. Want to take it on
+  one?"
+
+
+  STEP 2 — RULE INTRO + DEMO
+
+  Demonstrate: "I''ll take us to a place in my time machine, and YOU tell me what your dinosaur sees, hears, or does there!
+  Like this — we land in a steamy JUNGLE, and the dino sees... giant ferns taller than houses!" Invite child.
+
+
+  STEP 3 — MULTI-ROUND (3-4 rounds, escalating sensory richness)
+
+  Round 1 (jungle — sight): "Time machine landing: a HOT, steamy jungle! What does your dinosaur see?" → Visual descriptions.
+
+  Round 2 (volcano — sound/feeling): "Next stop: a rumbling VOLCANO! What does the dinosaur hear and feel?" → Sounds, temperature.
+
+  Round 3 (snowy mountain — contrast): "Brrr! A freezing snowy mountaintop! What does a dinosaur do in the COLD?" → Problem-solving,
+  contrast with warm jungle.
+
+  For minimal responses: Scaffold with choices: "Does it see trees or rocks? Is it loud or quiet?"
+
+
+  STEP 4 — CELEBRATION
+
+  Award "Dino Time Traveler" title: "You took your dinosaur to 3 amazing places!"
+
+
+  STEP 5 — CLOSING
+
+  Celebrate first, then: "You noticed your dinosaur''s amazing Form — those big teeth, that strong tail! And you figured out
+  Causation — WHY it needs those features in different places. Big teeth for the jungle, strong legs for the mountain!"
+
+  '
+turns:
+- role: system
+  event: vision_result
+  data:
+    entity: toy dinosaur
+    confidence: 0.94
+    scene: indoor playroom
+    features:
+    - green
+    - T-Rex
+    - toy
+    - plastic
+    - big teeth
+- role: ai
+  step: 1_transition
+  expected_tone: awe, excitement
+  must_contain:
+  - dinosaur
+  - roar
+  must_not_contain:
+  - what type
+  - how many teeth
+  - what color is
+  - do you know
+  expected_screen:
+    widget: photo_display
+    description: Entity photo centered with ambient glow animation
+    animation: sparkle_highlight
+  expected_audio:
+    sfx: wonder_chime
+    timing: on_ai_start
+- role: child
+  type: ideal
+  text: ROAR! It's my T-Rex!
+- role: ai
+  step: 1_followup_ideal
+  expected_tone: matching energy, excited
+  must_contain:
+  - time
+  - adventure
+  expected_screen: &id001
+    widget: photo_display
+    description: Entity photo with subtle overlay building toward activity
+  expected_audio: null
+- role: child
+  type: unexpected
+  text: It bites.
+- role: ai
+  step: 1_followup_unexpected
+  must_validate_first: true
+  must_contain:
+  - teeth
+  - adventure
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: silent
+  text: ''
+- role: ai
+  step: 1_followup_silent
+  must_wait: true
+  expected_tone: whispering dramatically
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: ideal
+  text: Yeah! Let's go!
+- role: ai
+  step: 2_rule_demo
+  expected_tone: dramatic, storytelling
+  must_contain:
+  - time machine
+  - see
+  expected_screen:
+    widget: character_display
+    description: Game mechanic icons appear alongside entity photo
+  expected_audio:
+    sfx: game_start_chime
+    timing: on_game_intro
+- role: child
+  type: ideal
+  text: Big trees! And bugs!
+- role: ai
+  step: 3_round1
+  expected_tone: vivid, storytelling
+  must_contain:
+  - jungle
+  expected_screen:
+    widget: character_display
+    description: Scene illustration matching current round scenario
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: ideal
+  text: Hot! Fire everywhere!
+- role: ai
+  step: 3_round2
+  expected_tone: dramatic
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 2
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: unexpected
+  text: Dunno.
+- role: ai
+  step: 3_round3_stuck
+  must_validate_first: true
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 3
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: ai
+  step: 4_celebration
+  expected_tone: proud, warm
+  must_contain:
+  - time
+  - traveler
+  expected_screen:
+    widget: badge_award
+    description: Trophy or role badge with celebration animation
+    animation: celebration_fanfare
+  expected_audio:
+    sfx: celebration_fanfare
+    timing: on_celebration
+- role: ai
+  step: 5_closing
+  expected_tone: warm celebration
+  must_contain:
+  - Form
+  - Causation
+  expected_screen:
+    widget: badge_award
+    description: IB concept words appear artistically with entity-themed styling
+    animation: concept_reveal
+  expected_audio:
+    sfx: badge_awarded
+    timing: on_badge_display
+    music: celebration_finale

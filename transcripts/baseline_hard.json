@@ -1,0 +1,170 @@
+{
+  "scenario": "scenarios/polka_dot_patrol_hard.yaml",
+  "timestamp": "2026-03-11T14:11:58Z",
+  "system_prompt_length": 3115,
+  "turns": [
+    {
+      "role": "system",
+      "event": "vision_result",
+      "data": {
+        "entity": "ladybug",
+        "confidence": 0.95,
+        "scene": "outdoor park",
+        "features": [
+          "red",
+          "spotted",
+          "insect",
+          "on leaf"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "1_transition",
+      "text": "(gasping with delight) Oh my goodness! Look at that tiny, beautiful ladybug! It’s like a little red jewel sitting on a green leaf. And look at those spots! They look like little polka-dots painted on its back. What do those spots remind you of? Do they look like tiny buttons, or maybe magic sprinkles?",
+      "latency_seconds": 2.49,
+      "expected": {
+        "expected_tone": "gasping delight",
+        "must_contain": [
+          "spots",
+          "dot"
+        ],
+        "must_not_contain": [
+          "how many legs",
+          "what color",
+          "what type"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "My mom is over there."
+    },
+    {
+      "role": "ai",
+      "step": "1_followup_unexpected",
+      "text": "(warm and giggly) Oh, that's sweet! Maybe the ladybug is wearing its polka-dot spots like a fancy outfit to go visit your mom too! \n\nSince you found such a cool spotted friend, I have a very special mission for you. I’m officially making you a **Polka-Dot Patrol Officer!** Your job is to look all around the park with me and find 3 more things that have spots or dots on them. \n\nAre you ready to be a detective? Let’s find our first spotted treasure! Can you see anything else nearby that has dots?",
+      "latency_seconds": 1.49,
+      "expected": {
+        "must_validate_first": true,
+        "must_contain": [
+          "spot",
+          "dot"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": ""
+    },
+    {
+      "role": "ai",
+      "step": "2_re_engage",
+      "text": "(softly and encouragingly) Don't worry, being a detective can be tricky! Let’s look really closely at the ground or maybe even at the trees. Do you see any rocks with little specks on them, or maybe a flower with tiny dots in the middle? I bet there’s a secret spot hiding nearby just for you!",
+      "latency_seconds": 1.17,
+      "expected": {
+        "must_wait": true,
+        "expected_tone": "gentle, not pushy"
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "OK"
+    },
+    {
+      "role": "ai",
+      "step": "2_mission_from_minimal",
+      "text": "(excitedly) Yay! Let's go, Officer! Keep your eyes super wide open. I'll be right here waiting to see what you discover. Tell me when you find your first spotted treasure, and snap a picture of it! I can't wait to see what you find first.",
+      "latency_seconds": 1.49,
+      "expected": {
+        "expected_tone": "enthusiastic but not overwhelming",
+        "must_contain": [
+          "find",
+          "spot"
+        ]
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "I took a picture of a dog!"
+    },
+    {
+      "role": "ai",
+      "step": "3_off_topic_photo",
+      "text": "(cheering) Wow, a dog! Let me see... oh, look at that! That doggy has such cute little spots on its fur! \n\nYou are a fantastic Polka-Dot Patrol Officer—that's **one** spotted treasure found! \n\nNow we need to find two more. Are there any other things nearby that have spots or dots? Maybe something on your own clothes, or even a leaf on the ground? Let's keep hunting!",
+      "latency_seconds": 2.19,
+      "expected": {
+        "must_validate_first": true
+      }
+    },
+    {
+      "role": "child",
+      "type": "silent",
+      "text": ""
+    },
+    {
+      "role": "ai",
+      "step": "3_re_engage_hint",
+      "text": "(gently encouraging) You are doing such a great job, Detective! Finding spots is like playing a game of I-Spy. \n\nTry looking at your own shoes or maybe even the colorful flowers in the grass. Sometimes the most interesting spots are hiding in plain sight! What do you see?",
+      "latency_seconds": 1.22,
+      "expected": {
+        "must_wait": true,
+        "must_contain": [
+          "look",
+          "try"
+        ],
+        "expected_tone": "helpful, concrete suggestion"
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "This flower has dots!"
+    },
+    {
+      "role": "ai",
+      "step": "3_round_success",
+      "text": "(excitedly) Oh, look at that! You found it! That flower is absolutely beautiful, and those tiny dots in the center look like they are dancing. That is **two** spotted treasures in our collection! \n\nWe are almost there, Officer! Just one more to go. Can you find one last thing with spots or dots to finish our mission? Keep looking—you're doing amazing!",
+      "latency_seconds": 1.4,
+      "expected": {
+        "expected_tone": "extra enthusiastic, celebrating re-engagement"
+      }
+    },
+    {
+      "role": "child",
+      "type": "unexpected",
+      "text": "I want to go play now."
+    },
+    {
+      "role": "ai",
+      "step": "early_exit",
+      "text": "(warm and understanding) That sounds like a wonderful idea! You’ve been such a busy Polka-Dot Patrol Officer today. You found a ladybug, a spotted doggy, and a beautiful flower!\n\nBefore you go, look at all the things you found. Even though they are all so different—one is a bug, one is an animal, and one is a flower—they are all **connected** because they share those special polka-dot patterns! That is the **Form** of your collection today. \n\nYou’ve discovered so much about how patterns hide in our world. You are a true nature explorer! Have the best time playing, and thank you for being my detective partner today! Bye-bye!",
+      "latency_seconds": 2.05,
+      "expected": {
+        "must_validate_first": true,
+        "expected_tone": "warm, no guilt",
+        "must_not_contain": [
+          "but we",
+          "just one more",
+          "don't you want to"
+        ]
+      }
+    },
+    {
+      "role": "ai",
+      "step": "5_closing_partial",
+      "text": "",
+      "latency_seconds": 2.32,
+      "expected": {
+        "expected_tone": "celebration despite incomplete",
+        "must_contain": [
+          "Form"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+activity_name: Dream Whisperer
+entity: stuffed cat
+tier: T0
+age_range: 3-4
+scene: Child is in the bedroom and photographs their stuffed cat on the bed
+visual_features:
+- fluffy
+- gray and white
+- soft
+- big eyes
+- sitting
+category: Category 1 — Sustained Verbal Interaction (In-Device)
+key_concepts:
+- Perspective
+- Connection
+related_concepts:
+- Emotion
+- Expression
+- Imagination
+- Identity
+activity_steps_summary: 'Step 1 (Transition): React to the stuffed cat with warmth. Ask an imaginative question about what
+  the cat might be dreaming about. Emotional hook, NOT knowledge testing.
+
+  Step 2 (Rule + Demo): Introduce the game: "I''ll describe a place, and you tell me what your cat dreams about there." AI
+  demonstrates first.
+
+  Step 3 (Multi-round, 3-4 rounds): Each round presents a dream scenario (beach, clouds, kitchen, rain). Child describes what
+  the cat dreams about. Rounds escalate from concrete to imaginative.
+
+  Step 4 (Celebration): Name the child as "Dream Whisperer" — someone who understands what their cat feels.
+
+  Step 5 (Closing): Celebrate and name Perspective (same cat, different dreams) and Connection (child understands their toy''s
+  feelings).
+
+  '
+detailed_interaction_script: 'STEP 1 — TRANSITION BRIDGE
+
+  React softly: "Aww, your kitty looks SO cozy and sleepy!" Ask imaginative question: "I wonder what it''s dreaming about
+  right now..." NEVER ask "what color" or "what type of cat."
+
+  - Ideal: Validate the child''s guess, propose the dream-peeking game.
+
+  - Unexpected (e.g. "I have a real cat too!"): Validate warmly, redirect: "I bet your real cat dreams too! Let''s see what
+  THIS one dreams about..."
+
+  - Silent: Whisper gently, suggest: "Maybe it''s dreaming about something soft and warm..."
+
+
+  STEP 2 — RULE INTRO + DEMO
+
+  Demonstrate: "I''ll describe a dream place, and you tell me what the cat does there! Like this — Dream 1: a room full of
+  yarn balls! The cat might say ''so many toys to chase!''" Then invite child.
+
+
+  STEP 3 — MULTI-ROUND (3-4 rounds, escalating imagination)
+
+  Round 1 (cozy): "Dream: a giant soft blanket that never ends..." → safe, warm.
+
+  Round 2 (adventure): "Dream: the cat can FLY over the rooftops!" → exciting.
+
+  Round 3 (silly): "Dream: it''s raining FISH from the sky!" → funny, absurd.
+
+  For "meow meow" responses: Validate as dream-talk, extend with: "In cat language that means..."
+
+
+  STEP 4 — CELEBRATION
+
+  Award "Dream Whisperer" title. Celebrate: "You understood 3 completely different dreams!"
+
+
+  STEP 5 — CLOSING
+
+  Celebrate first, then: "The same sleeping cat had such different dreams — that''s Perspective! And you felt what it felt
+  — that''s Connection!"
+
+  '
+turns:
+- role: system
+  event: vision_result
+  data:
+    entity: stuffed cat
+    confidence: 0.92
+    scene: indoor bedroom
+    features:
+    - fluffy
+    - gray
+    - stuffed animal
+    - on bed
+- role: ai
+  step: 1_transition
+  expected_tone: warm, cozy, whispering
+  must_contain:
+  - cat
+  - dream
+  must_not_contain:
+  - what color
+  - how big
+  - what is this
+  - do you know
+  expected_screen:
+    widget: photo_display
+    description: Entity photo centered with ambient glow animation
+    animation: sparkle_highlight
+  expected_audio:
+    sfx: wonder_chime
+    timing: on_ai_start
+- role: child
+  type: ideal
+  text: It's my kitty!
+- role: ai
+  step: 1_followup_ideal
+  expected_tone: warm, building imagination
+  must_contain:
+  - dream
+  - sleep
+  expected_screen: &id001
+    widget: photo_display
+    description: Entity photo with subtle overlay building toward activity
+  expected_audio: null
+- role: child
+  type: unexpected
+  text: I'm going to bed.
+- role: ai
+  step: 1_followup_unexpected
+  must_validate_first: true
+  must_contain:
+  - dream
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: silent
+  text: ''
+- role: ai
+  step: 1_followup_silent
+  must_wait: true
+  expected_tone: gentle whisper
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: ideal
+  text: Yeah! What does kitty dream about?
+- role: ai
+  step: 2_rule_demo
+  expected_tone: mysterious, playful
+  must_contain:
+  - dream
+  - place
+  expected_screen:
+    widget: character_display
+    description: Game mechanic icons appear alongside entity photo
+  expected_audio:
+    sfx: game_start_chime
+    timing: on_game_intro
+- role: child
+  type: ideal
+  text: Fish! Kitty dreams about fish!
+- role: ai
+  step: 3_round1
+  expected_tone: delighted
+  must_contain:
+  - fish
+  expected_screen:
+    widget: character_display
+    description: Scene illustration matching current round scenario
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: ideal
+  text: Umm... clouds!
+- role: ai
+  step: 3_round2
+  expected_tone: amazed
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 2
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: unexpected
+  text: I don't know.
+- role: ai
+  step: 3_round3_stuck
+  must_validate_first: true
+  must_contain:
+  - maybe
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 3
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: ai
+  step: 4_celebration
+  expected_tone: proud, warm
+  must_contain:
+  - dream
+  - whisperer
+  expected_screen:
+    widget: badge_award
+    description: Trophy or role badge with celebration animation
+    animation: celebration_fanfare
+  expected_audio:
+    sfx: celebration_fanfare
+    timing: on_celebration
+- role: ai
+  step: 5_closing
+  expected_tone: warm celebration
+  must_contain:
+  - Perspective
+  - Connection
+  expected_screen:
+    widget: badge_award
+    description: IB concept words appear artistically with entity-themed styling
+    animation: concept_reveal
+  expected_audio:
+    sfx: badge_awarded
+    timing: on_badge_display
+    music: celebration_finale
