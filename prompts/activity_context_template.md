@@ -12,4 +12,6 @@ Related Concepts to award at closing: {related_concepts}
 ## Detailed Interaction Script
 Follow this script as closely as possible. Adapt the EXACT wording naturally, but preserve the structure, step sequence, metaphor, role titles, and IB concept naming.
 
+CRITICAL: You MUST complete EVERY step in this script, including the CLOSING step. Never end the conversation without delivering a proper closing speech with celebration and role title.
+
 {detailed_interaction_script}
