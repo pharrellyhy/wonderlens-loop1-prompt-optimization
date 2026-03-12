@@ -51,3 +51,26 @@ B0	2026-03-12T10:15:00Z	GPT-5.2 baseline	switched sim model to gpt-5.2	simulate.
 4	2026-03-12T13:00:00Z	fix few-shot with multimedia and hook-compliant turn 1	added SCREEN/AUDIO to few-shot, removed question from turn 1	prompts/few_shot.md	0.6907	0.6932	0.5929	0.5894	0.6634	0.5937	0.660	0.6539	no
 5	2026-03-12T13:30:00Z	compress transition rule	shortened transition to 2 lines	prompts/system_prompt.md	0.6982	0.6347	0.0	0.5461	0.6386	0.6591	0.660	0.5294	no
 6	2026-03-12T14:00:00Z	per-turn checklist for multimedia	added 3-point verify checklist at end	prompts/system_prompt.md	0.6281	0.6791	0.6305	0.5935	0.6344	0.6264	0.660	0.6320	no
+14	2026-03-12T15:00:00Z	actionable dialogue style	replaced Dialogue Style with entity-referencing and echo rules	prompts/system_prompt.md	0.7067	0.6303	0.6389	0.5848	0.6432	0.6059	0.661	0.6350	no
+15	2026-03-12T15:30:00Z	visual feature grounding per round	added mention specific visual feature in each round	prompts/system_prompt.md	0.6619	0.6425	0.6130	0.5939	0.6425	0.7500	0.661	0.6506	no
+16	2026-03-12T16:00:00Z	goal directive in template	added Your goal: advance one step per turn	prompts/activity_context_template.md	0.6961	0.6410	0.6201	0.5683	0.6438	0.6121	0.661	0.6302	no
+17	2026-03-12T16:30:00Z	T0 sound words and consolidated rules	merged rules, added T0 onomatopoeia hint	prompts/system_prompt.md	0.6903	0.7005	0.6547	0.4984	0.6253	0.6040	0.661	0.6289	no
+18	2026-03-12T17:00:00Z	fix T0 concept naming to match tier rules	T0 name 1 concept, T1 name 2	prompts/system_prompt.md	0.6620	0.6796	0.6378	0.5505	0.5617	0.6667	0.661	0.6264	no
+18b	2026-03-12T17:30:00Z	clarify I-dont-know is not exit	added I dont know hint to unexpected rule	prompts/system_prompt.md	0.7294	0.6497	0.6575	0.6060	0.6371	0.6335	0.661	0.6522	no
+20	2026-03-12T18:00:00Z	remove Dialogue Style section	removed lines 27-31 Dialogue Style	prompts/system_prompt.md	0.6844	0.6165	0.6572	0.5615	0.6276	0.0000	0.661	0.5245	no
+21	2026-03-12T18:30:00Z	T1 collection few-shot example	added polka-dot patrol T1 example with SCREEN/AUDIO and closing	prompts/few_shot.md	0.7065	0.6178	0.6018	0.5985	0.7029	0.0000	0.661	0.5379	no
+22	2026-03-12T19:00:00Z	positive framing instead of negative	changed Never criticize to Celebrate every attempt	prompts/system_prompt.md	0.6846	0.5999	0.6679	0.5811	0.6522	0.0000	0.661	0.5310	no
+23	2026-03-12T19:30:00Z	remove code block formatting from multimedia example	removed backtick fences around format example	prompts/system_prompt.md	0.6948	0.6295	0.619	0.5725	0.6794	0.606	0.661	0.6335	no
+24	2026-03-12T20:00:00Z	2-3 sentence max rule	added Keep each response to 2-3 sentences maximum	prompts/system_prompt.md	0.6895	0.6482	0.6458	0.5753	0.7276	0.6857	0.661	0.6620	no
+25	2026-03-12T20:30:00Z	simplified Transition Rule to single sentence	replaced 4-step transition with single sentence	prompts/system_prompt.md	0.6474	0.0000	0.6757	0.5582	0.6532	0.0000	0.661	0.4224	no
+1g	2026-03-12T10:30:00Z	never-empty response rule	added never-empty rule to Conversation Rules	prompts/system_prompt.md	0.6930	0.6890	0.6485	0.5963	0.6430	0.6087	0.6306	0.6464	yes
+13g	2026-03-12T14:30:00Z	closing completion emphasis in template	added CRITICAL closing instruction to template	prompts/activity_context_template.md	0.7024	0.6926	0.6508	0.6336	0.6485	0.6402	0.660	0.661	yes
+7g	2026-03-12T15:00:00Z	separate closing turn instruction	added closing must be separate final turn	prompts/system_prompt.md	-	-	-	-	-	-	0.661	0.644	no
+8g	2026-03-12T15:30:00Z	echo child's exact words	added echo/build on child's words rule	prompts/system_prompt.md	-	-	-	-	-	-	0.661	0.640	no
+9g	2026-03-12T16:00:00Z	closing example in few-shot	added Turn 5 closing with SCREEN/AUDIO	prompts/few_shot.md	-	-	-	-	-	-	0.661	0.532	no
+10g	2026-03-12T16:30:00Z	wonder-filled role personality	rewrote Role with curiosity/childlike excitement	prompts/system_prompt.md	-	-	-	-	-	-	0.661	0.648	no
+11g	2026-03-12T17:00:00Z	fix few-shot Turn 1 hook	removed question from few-shot Turn 1	prompts/few_shot.md	-	-	-	-	-	-	0.661	0.636	no
+12g	2026-03-12T17:30:00Z	remove animation/sfx/music lists	shortened multimedia to remove verbose lists	prompts/system_prompt.md	-	-	-	-	-	-	0.661	0.639	no
+v4	2026-03-12T18:00:00Z	variance check	no change - measuring noise	-	0.7059	0.6727	0.6189	0.5822	0.6485	0.7139	0.661	0.657	variance
+19g	2026-03-12T19:00:00Z	mandatory closing step in Activity Flow	added EVERY step mandatory including closing	prompts/system_prompt.md	-	-	-	-	-	-	0.661	0.644	no
+26g	2026-03-12T21:00:00Z	compound: T0 concept naming + fix few-shot hook	T0 name 1 concept + remove question from Turn 1	prompts/system_prompt.md+few_shot.md	-	-	-	-	-	-	0.661	0.651	no
