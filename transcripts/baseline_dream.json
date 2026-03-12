@@ -1,21 +1,20 @@
 {
-  "scenario": "scenarios/time_machine_dinosaur.yaml",
-  "timestamp": "2026-03-11T15:04:50Z",
-  "system_prompt_length": 6579,
+  "scenario": "scenarios/dream_whisperer_cat.yaml",
+  "timestamp": "2026-03-11T15:04:44Z",
+  "system_prompt_length": 6068,
   "turns": [
     {
       "role": "system",
       "event": "vision_result",
       "data": {
-        "entity": "toy dinosaur",
-        "confidence": 0.94,
-        "scene": "indoor playroom",
+        "entity": "stuffed cat",
+        "confidence": 0.92,
+        "scene": "indoor bedroom",
         "features": [
-          "green",
-          "T-Rex",
-          "toy",
-          "plastic",
-          "big teeth"
+          "fluffy",
+          "gray",
+          "stuffed animal",
+          "on bed"
         ]
       }
     },
@@ -28,15 +27,15 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "awe, excitement",
+        "expected_tone": "warm, cozy, whispering",
         "must_contain": [
-          "dinosaur",
-          "roar"
+          "cat",
+          "dream"
         ],
         "must_not_contain": [
-          "what type",
-          "how many teeth",
-          "what color is",
+          "what color",
+          "how big",
+          "what is this",
           "do you know"
         ],
         "expected_screen": {
@@ -53,7 +52,7 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "ROAR! It's my T-Rex!"
+      "text": "It's my kitty!"
     },
     {
       "role": "ai",
@@ -64,10 +63,10 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "matching energy, excited",
+        "expected_tone": "warm, building imagination",
         "must_contain": [
-          "time",
-          "adventure"
+          "dream",
+          "sleep"
         ],
         "expected_screen": {
           "widget": "photo_display",
@@ -79,7 +78,7 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "It bites."
+      "text": "I'm going to bed."
     },
     {
       "role": "ai",
@@ -92,8 +91,7 @@
       "expected": {
         "must_validate_first": true,
         "must_contain": [
-          "teeth",
-          "adventure"
+          "dream"
         ],
         "expected_screen": {
           "widget": "photo_display",
@@ -117,7 +115,7 @@
       "latency_seconds": -1,
       "expected": {
         "must_wait": true,
-        "expected_tone": "whispering dramatically",
+        "expected_tone": "gentle whisper",
         "expected_screen": {
           "widget": "photo_display",
           "description": "Entity photo with subtle overlay building toward activity"
@@ -128,7 +126,7 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Yeah! Let's go!"
+      "text": "Yeah! What does kitty dream about?"
     },
     {
       "role": "ai",
@@ -139,10 +137,10 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "dramatic, storytelling",
+        "expected_tone": "mysterious, playful",
         "must_contain": [
-          "time machine",
-          "see"
+          "dream",
+          "place"
         ],
         "expected_screen": {
           "widget": "character_display",
@@ -157,7 +155,7 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Big trees! And bugs!"
+      "text": "Fish! Kitty dreams about fish!"
     },
     {
       "role": "ai",
@@ -168,9 +166,9 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "vivid, storytelling",
+        "expected_tone": "delighted",
         "must_contain": [
-          "jungle"
+          "fish"
         ],
         "expected_screen": {
           "widget": "character_display",
@@ -186,7 +184,7 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Hot! Fire everywhere!"
+      "text": "Umm... clouds!"
     },
     {
       "role": "ai",
@@ -197,7 +195,7 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "dramatic",
+        "expected_tone": "amazed",
         "expected_screen": {
           "widget": "character_display",
           "description": "New scene illustration for round 2",
@@ -212,7 +210,7 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "Dunno."
+      "text": "I don't know."
     },
     {
       "role": "ai",
@@ -224,6 +222,9 @@
       "latency_seconds": -1,
       "expected": {
         "must_validate_first": true,
+        "must_contain": [
+          "maybe"
+        ],
         "expected_screen": {
           "widget": "character_display",
           "description": "New scene illustration for round 3",
@@ -246,8 +247,8 @@
       "expected": {
         "expected_tone": "proud, warm",
         "must_contain": [
-          "time",
-          "traveler"
+          "dream",
+          "whisperer"
         ],
         "expected_screen": {
           "widget": "badge_award",
@@ -271,8 +272,8 @@
       "expected": {
         "expected_tone": "warm celebration",
         "must_contain": [
-          "Form",
-          "Causation"
+          "Perspective",
+          "Connection"
         ],
         "expected_screen": {
           "widget": "badge_award",

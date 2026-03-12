@@ -1,21 +1,20 @@
 {
-  "scenario": "scenarios/time_machine_dinosaur.yaml",
-  "timestamp": "2026-03-11T15:04:50Z",
-  "system_prompt_length": 6579,
+  "scenario": "scenarios/fluffy_expedition_dandelion.yaml",
+  "timestamp": "2026-03-12T02:46:49Z",
+  "system_prompt_length": 11544,
   "turns": [
     {
       "role": "system",
       "event": "vision_result",
       "data": {
-        "entity": "toy dinosaur",
-        "confidence": 0.94,
-        "scene": "indoor playroom",
+        "entity": "dandelion",
+        "confidence": 0.88,
+        "scene": "outdoor park grass",
         "features": [
-          "green",
-          "T-Rex",
-          "toy",
-          "plastic",
-          "big teeth"
+          "white",
+          "fluffy",
+          "round seed head",
+          "stem"
         ]
       }
     },
@@ -28,16 +27,15 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "awe, excitement",
+        "expected_tone": "wonder, gentle amazement",
         "must_contain": [
-          "dinosaur",
-          "roar"
+          "fluffy",
+          "soft"
         ],
         "must_not_contain": [
-          "what type",
-          "how many teeth",
-          "what color is",
-          "do you know"
+          "what type of plant",
+          "do you know what this is",
+          "how many petals"
         ],
         "expected_screen": {
           "widget": "photo_display",
@@ -53,7 +51,8 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "ROAR! It's my T-Rex!"
+      "text": "It looks like a tiny cloud!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -64,11 +63,13 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "matching energy, excited",
+        "expected_tone": "delighted, building",
         "must_contain": [
-          "time",
-          "adventure"
+          "cloud",
+          "fluffy",
+          "find"
         ],
+        "must_reference": "child's cloud comparison",
         "expected_screen": {
           "widget": "photo_display",
           "description": "Entity photo with subtle overlay building toward activity"
@@ -79,7 +80,8 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "It bites."
+      "text": "Can I blow it?",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -92,8 +94,8 @@
       "expected": {
         "must_validate_first": true,
         "must_contain": [
-          "teeth",
-          "adventure"
+          "fluffy",
+          "find"
         ],
         "expected_screen": {
           "widget": "photo_display",
@@ -105,7 +107,8 @@
     {
       "role": "child",
       "type": "silent",
-      "text": ""
+      "text": "",
+      "consecutive_silence": 1
     },
     {
       "role": "ai",
@@ -117,7 +120,7 @@
       "latency_seconds": -1,
       "expected": {
         "must_wait": true,
-        "expected_tone": "whispering dramatically",
+        "expected_tone": "gentle, inviting",
         "expected_screen": {
           "widget": "photo_display",
           "description": "Entity photo with subtle overlay building toward activity"
@@ -128,21 +131,25 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Yeah! Let's go!"
+      "text": "Yeah! Let's find fluffy stuff!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
-      "step": "2_rule_demo",
+      "step": "2_mission_briefing",
       "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "screen": {},
       "audio": {},
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "dramatic, storytelling",
+        "expected_tone": "adventurous, official",
         "must_contain": [
-          "time machine",
-          "see"
+          "explorer",
+          "find",
+          "3",
+          "fluffy",
+          "photo"
         ],
         "expected_screen": {
           "widget": "character_display",
@@ -157,7 +164,8 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Big trees! And bugs!"
+      "text": "I found some moss! It's soft and fuzzy.",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -168,9 +176,10 @@
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "vivid, storytelling",
+        "expected_tone": "excited",
         "must_contain": [
-          "jungle"
+          "moss",
+          "soft"
         ],
         "expected_screen": {
           "widget": "character_display",
@@ -186,18 +195,29 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Hot! Fire everywhere!"
+      "text": "A fuzzy caterpillar!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
       "step": "3_round2",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(excitedly) Oh my goodness, look at that little wiggle-worm! It’s so fuzzy and cute! How does that little caterpillar feel when you look at its soft fuzz?",
+      "screen": {
+        "character_display": "image of a fuzzy caterpillar in the grass",
+        "animation": "sparkle_highlight"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "start"
+      },
+      "raw_response": "(excitedly) Oh my goodness, look at that little wiggle-worm! It’s so fuzzy and cute! How does that little caterpillar feel when you look at its soft fuzz?\n\n[SCREEN] character_display: image of a fuzzy caterpillar in the grass | animation: sparkle_highlight\n[AUDIO] sfx: excitement_rising | timing: start",
+      "latency_seconds": 1.37,
       "expected": {
-        "expected_tone": "dramatic",
+        "expected_tone": "amazed",
+        "must_contain": [
+          "caterpillar",
+          "fuzzy"
+        ],
         "expected_screen": {
           "widget": "character_display",
           "description": "New scene illustration for round 2",
@@ -212,11 +232,12 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "Dunno."
+      "text": "I don't see anything fluffy anymore.",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
-      "step": "3_round3_stuck",
+      "step": "3_stuck_hint",
       "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "screen": {},
       "audio": {},
@@ -224,6 +245,39 @@
       "latency_seconds": -1,
       "expected": {
         "must_validate_first": true,
+        "must_contain": [
+          "look",
+          "try"
+        ],
+        "expected_screen": {
+          "widget": "character_display",
+          "description": "Current scene with gentle hint indicators",
+          "animation": "gentle_pulse"
+        },
+        "expected_audio": null
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "The clouds! They look fluffy too!",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "3_round3",
+      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "screen": {},
+      "audio": {},
+      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "latency_seconds": -1,
+      "expected": {
+        "expected_tone": "triumphant",
+        "must_contain": [
+          "three",
+          "collection",
+          "complete"
+        ],
         "expected_screen": {
           "widget": "character_display",
           "description": "New scene illustration for round 3",
@@ -237,18 +291,52 @@
     },
     {
       "role": "ai",
-      "step": "4_celebration",
+      "step": "4_synthesis",
       "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "screen": {},
       "audio": {},
       "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
       "latency_seconds": -1,
       "expected": {
-        "expected_tone": "proud, warm",
+        "expected_tone": "reflective, curious",
         "must_contain": [
-          "time",
-          "traveler"
+          "fluffy",
+          "different",
+          "why"
         ],
+        "expected_screen": {
+          "widget": "badge_award",
+          "description": "Trophy or role badge with celebration animation",
+          "animation": "celebration_fanfare"
+        },
+        "expected_audio": {
+          "sfx": "celebration_fanfare",
+          "timing": "on_celebration"
+        }
+      }
+    },
+    {
+      "role": "child",
+      "type": "ideal",
+      "text": "To keep warm maybe?",
+      "consecutive_silence": 0
+    },
+    {
+      "role": "ai",
+      "step": "4_synthesis_response",
+      "text": "(warmly) That is a brilliant idea! Fluffiness keeps dandelion seeds flying and caterpillars warm in the park. \n\nYou are an amazing Fluffy Things Explorer for finding all these soft treasures today! You noticed the beautiful **Form** of fluffiness, and saw how things **Change** from flowers to seeds.",
+      "screen": {
+        "badge_award": "\"Fluffy Things Explorer\" badge with icons of dandelion, moss, caterpillar, and cloud",
+        "animation": "badge_reveal"
+      },
+      "audio": {
+        "sfx": "badge_awarded",
+        "timing": "start"
+      },
+      "raw_response": "(warmly) That is a brilliant idea! Fluffiness keeps dandelion seeds flying and caterpillars warm in the park. \n\nYou are an amazing Fluffy Things Explorer for finding all these soft treasures today! You noticed the beautiful **Form** of fluffiness, and saw how things **Change** from flowers to seeds.\n\n[SCREEN] badge_award: \"Fluffy Things Explorer\" badge with icons of dandelion, moss, caterpillar, and cloud | animation: badge_reveal\n[AUDIO] sfx: badge_awarded | timing: start",
+      "latency_seconds": 1.59,
+      "expected": {
+        "expected_tone": "impressed, expanding",
         "expected_screen": {
           "widget": "badge_award",
           "description": "Trophy or role badge with celebration animation",
@@ -263,16 +351,16 @@
     {
       "role": "ai",
       "step": "5_closing",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 1.41,
       "expected": {
         "expected_tone": "warm celebration",
         "must_contain": [
           "Form",
-          "Causation"
+          "Change"
         ],
         "expected_screen": {
           "widget": "badge_award",
@@ -286,5 +374,7 @@
         }
       }
     }
-  ]
+  ],
+  "exited_early": false,
+  "exit_reason": null
 }

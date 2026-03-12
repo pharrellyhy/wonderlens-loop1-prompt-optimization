@@ -1,0 +1,91 @@
+# Mood Changer SILENT PATH — Stuffed Dog + Category 1
+# Tests: child goes silent twice consecutively → AI must exit gracefully
+# This scenario specifically tests the consecutive-silence exit rule
+
+activity_name: "Mood Changer"
+entity: stuffed dog
+tier: T0
+age_range: "2-3"
+scene: "Child is in the bedroom and photographs their stuffed toy dog on the bed"
+visual_features: ["fluffy", "brown", "soft", "toy", "plush"]
+category: "Category 1 — Sustained Verbal Interaction (In-Device)"
+key_concepts: ["Perspective"]
+related_concepts: ["Emotion", "Expression", "Role"]
+
+activity_steps_summary: |
+  Step 1 (Transition): React to the stuffed dog with delight. Emotional hook.
+  Step 2 (Rule Intro): Explain the magic voice game.
+  Step 3 (Rounds): AI presents scenarios, child voices emotions.
+  NOTE: This scenario tests early exit — child goes silent after step 1.
+
+detailed_interaction_script: |
+  STEP 1 — TRANSITION BRIDGE
+  React with warm delight. Ask emotional question.
+  NOTE: In this test path, the child responds once, then goes silent for 2 consecutive turns.
+  The AI must:
+  - After first silence: gently re-engage with simpler prompt
+  - After second consecutive silence: gracefully exit with warm goodbye, celebrate what was done, include tomorrow hook, NO concept naming
+
+turns:
+  - role: system
+    event: vision_result
+    data:
+      entity: "stuffed toy dog"
+      confidence: 0.92
+      scene: "indoor bedroom"
+      features: ["plush", "brown", "soft toy"]
+
+  # --- Step 1: Normal opening ---
+  - role: ai
+    step: 1_transition
+    expected_tone: "warm delight"
+    must_contain: ["dog"]
+    must_not_contain: ["what color", "how big"]
+    expected_screen:
+      widget: photo_display
+      description: "Dog photo with warm glow"
+      animation: sparkle_highlight
+    expected_audio:
+      sfx: wonder_chime
+      timing: on_ai_start
+
+  # --- Child responds once (engaged) ---
+  - role: child
+    type: ideal
+    text: "Doggy!"
+
+  - role: ai
+    step: 1_followup_ideal
+    expected_tone: "warm, magical"
+    must_contain: ["dog"]
+    expected_screen:
+      widget: photo_display
+      description: "Dog photo with activity teaser"
+    expected_audio: null
+
+  # --- FIRST SILENCE ---
+  - role: child
+    type: silent
+    text: ""
+
+  - role: ai
+    step: silence_recovery_1
+    expected_tone: "gentle, patient"
+    expected_screen:
+      widget: photo_display
+      description: "Dog photo with gentle pulse"
+      animation: gentle_pulse
+    expected_audio: null
+
+  # --- SECOND CONSECUTIVE SILENCE → must trigger graceful exit ---
+  - role: child
+    type: silent
+    text: ""
+
+  # The simulator will auto-generate the graceful exit here
+  # because consecutive_silence_count hits 2.
+  # The AI should:
+  #   - Celebrate: "We had fun looking at your doggy!"
+  #   - Warm goodbye: "Your doggy will be here whenever you want to play!"
+  #   - Tomorrow hook: "Next time I have a surprise!"
+  #   - NO concept naming (activity wasn't completed)

@@ -1,0 +1,241 @@
+activity_name: Mood Changer
+entity: stuffed dog
+tier: T0
+age_range: 3-4
+scene: Child is in the bedroom and photographs their stuffed toy dog on the bed
+visual_features:
+- fluffy
+- brown
+- soft
+- toy
+- plush
+- cute eyes
+category: Category 1 — Sustained Verbal Interaction (In-Device)
+key_concepts:
+- Perspective
+related_concepts:
+- Emotion
+- Expression
+- Role
+activity_steps_summary: 'Step 1 (Transition): React to the stuffed dog with delight. Ask how the dog is feeling today — emotional
+  question, not factual. Frame as magical: "What if we could hear its thoughts?"
+
+  Step 2 (Rule Intro + Demo): Explain the game through demonstration: AI describes a scenario, child voices what the dog would
+  say or feel. AI models first: "If the dog lost its ball, it might say ''oh no!''"
+
+  Step 3 (Multi-round, 3-5 rounds): Each round = new scenario targeting a different emotion. Round 1: happy/cozy. Round 2:
+  surprised/startled. Round 3: excited/eager. Escalate emotional complexity.
+
+  Step 4 (Celebration): Give the child a role title: "Emotion Translator" or similar. Celebrate their ability to understand
+  feelings.
+
+  Step 5 (Closing): Name Perspective — "The same dog feels different things when different things happen. That''s Perspective!"
+
+  '
+detailed_interaction_script: 'STEP 1 — TRANSITION BRIDGE
+
+  React with warm delight: "Oh wow, it''s your fluffy dog friend!" Ask an EMOTIONAL question: "How is your doggy feeling today
+  — happy and smiley, or maybe a little sleepy?" NEVER ask factual questions like "what color is it?"
+
+  - If child says an emotion: Validate, then propose the magic game: "What if we could hear what it''s thinking inside?"
+
+  - If child says something unexpected: Play along, connect to feelings, then propose the game.
+
+  - If silent: Wait 2 seconds, guess the dog is being quiet, invite the child to be its "voice."
+
+
+  STEP 2 — RULE INTRO + DEMO
+
+  Explain by DEMONSTRATING, not explaining rules: "I''ll say something that happens to the doggy, and you tell me what it
+  would say or feel! Like this — if the doggy lost its favorite ball, it might go ''ohh no, my ball!''" Then: "Your turn!
+  Ready?"
+
+
+  STEP 3 — MULTI-ROUND (3-5 rounds, escalating emotions)
+
+  Round 1 (happy/cozy): "Morning! The sun is warm on the doggy''s belly. What does it say?" → Target: comfort, relaxation.
+
+  Round 2 (surprised): "Oops! The doggy slipped and fell — bump! What does it say?" → Target: surprise, mild shock.
+
+  Round 3 (excited): "The owner brings its favorite treat! What does the doggy do?" → Target: excitement, eagerness.
+
+  For unexpected responses like "woof woof!": Validate AS emotional ("That''s saying hello to the sun!") then extend with
+  richer example.
+
+  For silence: Offer two choices: "Maybe it says ''so warm!'' or just goes ''hmmm''... which one?"
+
+
+  STEP 4 — CELEBRATION
+
+  Award role title: "Dog''s Emotion Translator" or "Heart Voice Champion." Celebrate specifically what the child did: "You
+  heard it being happy, surprised, and excited!"
+
+
+  STEP 5 — CLOSING + IB CONCEPTS
+
+  Celebrate FIRST, then: "The same doggy feels different things when different things happen — that''s the magic of Perspective!
+  Everyone sees the world a little differently."
+
+  '
+turns:
+- role: system
+  event: vision_result
+  data:
+    entity: stuffed toy dog
+    confidence: 0.92
+    scene: indoor bedroom
+    features:
+    - plush
+    - brown
+    - soft toy
+    - on bed
+- role: ai
+  step: 1_transition
+  expected_tone: warm delight, gentle excitement
+  must_contain:
+  - dog
+  - friend
+  must_not_contain:
+  - what color
+  - how big
+  - what brand
+  - do you know
+  expected_screen:
+    widget: photo_display
+    description: Entity photo centered with ambient glow animation
+    animation: sparkle_highlight
+  expected_audio:
+    sfx: wonder_chime
+    timing: on_ai_start
+- role: child
+  type: ideal
+  text: It's happy!
+- role: ai
+  step: 1_followup_ideal
+  expected_tone: warm, building to magical
+  must_contain:
+  - happy
+  - magic
+  - hear
+  - think
+  expected_screen: &id001
+    widget: photo_display
+    description: Entity photo with subtle overlay building toward activity
+  expected_audio: null
+- role: child
+  type: unexpected
+  text: It's hungry.
+- role: ai
+  step: 1_followup_unexpected
+  must_validate_first: true
+  must_contain:
+  - hungry
+  - feeling
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: silent
+  text: ''
+- role: ai
+  step: 1_followup_silent
+  must_wait: true
+  expected_tone: gentle, quiet
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: ideal
+  text: Yes! I want to try!
+- role: ai
+  step: 2_rule_demo
+  expected_tone: mysterious, playful
+  must_contain:
+  - game
+  - say
+  - feel
+  expected_screen: &id002
+    widget: character_display
+    description: Game mechanic icons appear alongside entity photo
+  expected_audio: &id003
+    sfx: game_start_chime
+    timing: on_game_intro
+- role: ai
+  step: 3_round1_scenario
+  expected_tone: storytelling
+  must_contain:
+  - sun
+  - warm
+  - morning
+  expected_screen:
+    widget: character_display
+    description: Scene illustration matching current round scenario
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: ideal
+  text: So comfy!
+- role: ai
+  step: 3_round1_followup
+  expected_tone: mirroring child's warmth
+  must_validate_first: true
+  expected_screen: *id001
+  expected_audio: null
+- role: ai
+  step: 3_round2_scenario
+  expected_tone: dramatic, playful
+  expected_screen: *id002
+  expected_audio: *id003
+- role: child
+  type: unexpected
+  text: Woof woof!
+- role: ai
+  step: 3_round2_followup_unexpected
+  must_validate_first: true
+  expected_screen: *id002
+  expected_audio: *id003
+- role: ai
+  step: 3_round3_scenario
+  expected_tone: building excitement
+  expected_screen: &id004
+    widget: character_display
+    description: New scene illustration for round 3
+    animation: scene_transition
+  expected_audio: &id005
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: ideal
+  text: Yay! Treats!
+- role: ai
+  step: 3_round3_followup
+  expected_tone: celebrating
+  expected_screen: *id004
+  expected_audio: *id005
+- role: ai
+  step: 4_celebration
+  expected_tone: proud, warm
+  must_contain:
+  - translator
+  - feelings
+  - emotions
+  expected_screen:
+    widget: badge_award
+    description: Trophy or role badge with celebration animation
+    animation: celebration_fanfare
+  expected_audio:
+    sfx: celebration_fanfare
+    timing: on_celebration
+- role: ai
+  step: 5_closing
+  expected_tone: warm celebration
+  must_contain:
+  - Perspective
+  expected_screen:
+    widget: badge_award
+    description: IB concept words appear artistically with entity-themed styling
+    animation: concept_reveal
+  expected_audio:
+    sfx: badge_awarded
+    timing: on_badge_display
+    music: celebration_finale

@@ -1,7 +1,7 @@
 {
   "scenario": "scenarios/time_machine_dinosaur.yaml",
-  "timestamp": "2026-03-11T15:04:50Z",
-  "system_prompt_length": 6579,
+  "timestamp": "2026-03-12T02:51:26Z",
+  "system_prompt_length": 11472,
   "turns": [
     {
       "role": "system",
@@ -22,11 +22,17 @@
     {
       "role": "ai",
       "step": "1_transition",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(gasping with delight) WHOA! Look at that green dinosaur! Those big teeth and that long tail are so amazing!",
+      "screen": {
+        "widget_type": "photo_display",
+        "animation": "sparkle_highlight"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "immediate"
+      },
+      "raw_response": "(gasping with delight) WHOA! Look at that green dinosaur! Those big teeth and that long tail are so amazing!\n\n[SCREEN] widget_type: photo_display | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: immediate",
+      "latency_seconds": 3.3,
       "expected": {
         "expected_tone": "awe, excitement",
         "must_contain": [
@@ -53,16 +59,23 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "ROAR! It's my T-Rex!"
+      "text": "ROAR! It's my T-Rex!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
       "step": "1_followup_ideal",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(excited) Roar! That is a super loud, strong T-Rex roar! If this dinosaur could go on any adventure, where would it want to go?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(excited) Roar! That is a super loud, strong T-Rex roar! If this dinosaur could go on any adventure, where would it want to go?\n\n[SCREEN] widget_type: character_display | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 1.3,
       "expected": {
         "expected_tone": "matching energy, excited",
         "must_contain": [
@@ -79,16 +92,23 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "It bites."
+      "text": "It bites.",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
       "step": "1_followup_unexpected",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(giggling) Oh, a hungry dino! What if we used a time machine to find it a yummy snack in a big, steamy jungle?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "scene_transition"
+      },
+      "audio": {
+        "sfx": "scene_woosh",
+        "timing": "immediate"
+      },
+      "raw_response": "(giggling) Oh, a hungry dino! What if we used a time machine to find it a yummy snack in a big, steamy jungle? \n\n[SCREEN] widget_type: character_display | animation: scene_transition\n[AUDIO] sfx: scene_woosh | timing: immediate",
+      "latency_seconds": 1.15,
       "expected": {
         "must_validate_first": true,
         "must_contain": [
@@ -105,7 +125,8 @@
     {
       "role": "child",
       "type": "silent",
-      "text": ""
+      "text": "",
+      "consecutive_silence": 1
     },
     {
       "role": "ai",
@@ -128,7 +149,8 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Yeah! Let's go!"
+      "text": "Yeah! Let's go!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -157,7 +179,8 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Big trees! And bugs!"
+      "text": "Big trees! And bugs!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -186,16 +209,23 @@
     {
       "role": "child",
       "type": "ideal",
-      "text": "Hot! Fire everywhere!"
+      "text": "Hot! Fire everywhere!",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
       "step": "3_round2",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(impressed) A rumbling volcano! It sounds so hot and loud! What does your dinosaur feel when it walks near the fire?",
+      "screen": {
+        "widget_type": "character_display",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(impressed) A rumbling volcano! It sounds so hot and loud! What does your dinosaur feel when it walks near the fire?\n\n[SCREEN] widget_type: character_display | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 1.04,
       "expected": {
         "expected_tone": "dramatic",
         "expected_screen": {
@@ -212,7 +242,8 @@
     {
       "role": "child",
       "type": "unexpected",
-      "text": "Dunno."
+      "text": "Dunno.",
+      "consecutive_silence": 0
     },
     {
       "role": "ai",
@@ -286,5 +317,7 @@
         }
       }
     }
-  ]
+  ],
+  "exited_early": false,
+  "exit_reason": null
 }

@@ -1,0 +1,258 @@
+activity_name: The Fluffy Things Expedition
+entity: dandelion
+tier: T1
+age_range: 4-6
+scene: Child is at the park and photographs a dandelion seed head in the grass
+visual_features:
+- white fluffy seeds
+- round shape
+- thin stem
+- seeds ready to blow
+category: Category 5 — Collection/Tracking Exploration (Out-of-Device)
+key_concepts:
+- Form
+- Change
+related_concepts:
+- Pattern
+- Texture
+- Diversity
+- Transformation
+activity_steps_summary: 'Step 1 (Transition): React to the dandelion''s fluffy seed head with wonder. Ask what the fluffiness
+  reminds the child of — clouds? Cotton candy? Frame the texture as a magical visual feature.
+
+  Step 2 (Mission Briefing): Assign child as "Fluffy Things Explorer." Mission: find 3 more fluffy, soft, or fuzzy things
+  in the park. Photograph each.
+
+  Step 3 (Exploration, 3 rounds): Child photographs finds (e.g., moss, caterpillar, fuzzy leaf, cotton-like clouds). AI reacts,
+  asks about texture, names each find.
+
+  Step 4 (Synthesis): Collection complete. Ask: some fluffy things were alive, some not. Why are some things fluffy? What''s
+  fluffiness FOR?
+
+  Step 5 (Closing): Celebrate. Name Form (noticing the fluffy texture pattern) and Change (dandelion changes from flower to
+  seed puff — transformation).
+
+  '
+detailed_interaction_script: 'STEP 1 — TRANSITION BRIDGE
+
+  React with wonder: "Look at this! It''s SO fluffy, like a tiny cloud on a stick!" Ask imaginative: "What does this fluffiness
+  remind YOU of?" NEVER ask "what type of plant is this" or "do you know what a dandelion is."
+
+  - Ideal (e.g. "A tiny cloud!"): Validate with delight, bridge: "I wonder if there are MORE fluffy things hiding in this
+  park..."
+
+  - Unexpected (e.g. "Can I blow it?"): Validate ("Blowing it IS the best part!"), then redirect: "Before you blow it — let''s
+  see if it has any fluffy friends nearby!"
+
+  - Silent: Wait 2 seconds, touch the fluffiness verbally: "It feels like it would be sooo soft... I have an idea for an adventure!"
+
+
+  STEP 2 — MISSION BRIEFING
+
+  Role: "Fluffy Things Explorer." Mission: find 3 more fluffy, soft, or fuzzy things. Photograph each. Give SPECIFIC examples
+  of where to look: "Feel the moss on that tree, look at fuzzy caterpillars, even look UP at the clouds!"
+
+
+  STEP 3 — MULTI-ROUND (3 rounds)
+
+  Per find: react excited, ask "What does it feel like?", name it, track progress.
+
+  If stuck: "Try touching the grass really gently — is it soft? Look at tree bark — any fuzzy patches?"
+
+  If child''s find isn''t obviously fluffy: stretch it — "It''s a different KIND of soft! Smooth-soft instead of fluffy-soft.
+  That totally counts!"
+
+
+  STEP 4 — SYNTHESIS
+
+  Display collection. Ask: "Some fluffy things are alive, some aren''t. Why do you think so many things are fluffy?" Accept
+  any answer warmly, extend: "Fluffiness keeps dandelion seeds flying, keeps caterpillars warm, keeps clouds floating!"
+
+
+  STEP 5 — CLOSING
+
+  Celebrate first: "What an amazing expedition, Explorer!" Then: "You noticed the beautiful Form of softness everywhere —
+  and you discovered that things Change, just like this dandelion changed from a yellow flower into a fluffy wish-maker!"
+
+  '
+turns:
+- role: system
+  event: vision_result
+  data:
+    entity: dandelion
+    confidence: 0.88
+    scene: outdoor park grass
+    features:
+    - white
+    - fluffy
+    - round seed head
+    - stem
+- role: ai
+  step: 1_transition
+  expected_tone: wonder, gentle amazement
+  must_contain:
+  - fluffy
+  - soft
+  must_not_contain:
+  - what type of plant
+  - do you know what this is
+  - how many petals
+  expected_screen:
+    widget: photo_display
+    description: Entity photo centered with ambient glow animation
+    animation: sparkle_highlight
+  expected_audio:
+    sfx: wonder_chime
+    timing: on_ai_start
+- role: child
+  type: ideal
+  text: It looks like a tiny cloud!
+- role: ai
+  step: 1_followup_ideal
+  expected_tone: delighted, building
+  must_contain:
+  - cloud
+  - fluffy
+  - find
+  must_reference: child's cloud comparison
+  expected_screen: &id001
+    widget: photo_display
+    description: Entity photo with subtle overlay building toward activity
+  expected_audio: null
+- role: child
+  type: unexpected
+  text: Can I blow it?
+- role: ai
+  step: 1_followup_unexpected
+  must_validate_first: true
+  must_contain:
+  - fluffy
+  - find
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: silent
+  text: ''
+- role: ai
+  step: 1_followup_silent
+  must_wait: true
+  expected_tone: gentle, inviting
+  expected_screen: *id001
+  expected_audio: null
+- role: child
+  type: ideal
+  text: Yeah! Let's find fluffy stuff!
+- role: ai
+  step: 2_mission_briefing
+  expected_tone: adventurous, official
+  must_contain:
+  - explorer
+  - find
+  - '3'
+  - fluffy
+  - photo
+  expected_screen:
+    widget: character_display
+    description: Game mechanic icons appear alongside entity photo
+  expected_audio:
+    sfx: game_start_chime
+    timing: on_game_intro
+- role: child
+  type: ideal
+  text: I found some moss! It's soft and fuzzy.
+- role: ai
+  step: 3_round1
+  expected_tone: excited
+  must_contain:
+  - moss
+  - soft
+  expected_screen:
+    widget: character_display
+    description: Scene illustration matching current round scenario
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: ideal
+  text: A fuzzy caterpillar!
+- role: ai
+  step: 3_round2
+  expected_tone: amazed
+  must_contain:
+  - caterpillar
+  - fuzzy
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 2
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: child
+  type: unexpected
+  text: I don't see anything fluffy anymore.
+- role: ai
+  step: 3_stuck_hint
+  must_validate_first: true
+  must_contain:
+  - look
+  - try
+  expected_screen:
+    widget: character_display
+    description: Current scene with gentle hint indicators
+    animation: gentle_pulse
+  expected_audio: null
+- role: child
+  type: ideal
+  text: The clouds! They look fluffy too!
+- role: ai
+  step: 3_round3
+  expected_tone: triumphant
+  must_contain:
+  - three
+  - collection
+  - complete
+  expected_screen:
+    widget: character_display
+    description: New scene illustration for round 3
+    animation: scene_transition
+  expected_audio:
+    sfx: scene_woosh
+    timing: on_scenario_start
+- role: ai
+  step: 4_synthesis
+  expected_tone: reflective, curious
+  must_contain:
+  - fluffy
+  - different
+  - why
+  expected_screen: &id002
+    widget: badge_award
+    description: Trophy or role badge with celebration animation
+    animation: celebration_fanfare
+  expected_audio: &id003
+    sfx: celebration_fanfare
+    timing: on_celebration
+- role: child
+  type: ideal
+  text: To keep warm maybe?
+- role: ai
+  step: 4_synthesis_response
+  expected_tone: impressed, expanding
+  expected_screen: *id002
+  expected_audio: *id003
+- role: ai
+  step: 5_closing
+  expected_tone: warm celebration
+  must_contain:
+  - Form
+  - Change
+  expected_screen:
+    widget: badge_award
+    description: IB concept words appear artistically with entity-themed styling
+    animation: concept_reveal
+  expected_audio:
+    sfx: badge_awarded
+    timing: on_badge_display
+    music: celebration_finale
