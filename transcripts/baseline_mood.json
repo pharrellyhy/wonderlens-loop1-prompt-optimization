@@ -1,7 +1,7 @@
 {
   "scenario": "scenarios/mood_changer_dog.yaml",
-  "timestamp": "2026-03-11T15:40:23Z",
-  "system_prompt_length": 8434,
+  "timestamp": "2026-03-12T10:11:21Z",
+  "system_prompt_length": 11525,
   "turns": [
     {
       "role": "system",
@@ -21,11 +21,17 @@
     {
       "role": "ai",
       "step": "1_transition",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(gasping with delight) Oh wow, it's your super soft, fluffy dog friend! I love how brown and cozy it looks on your bed.",
+      "screen": {
+        "photo_display": "child's photo of the dog with sparkles",
+        "animation": "sparkle_highlight"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "immediate"
+      },
+      "raw_response": "(gasping with delight) Oh wow, it's your super soft, fluffy dog friend! I love how brown and cozy it looks on your bed.\n\n[SCREEN] photo_display: child's photo of the dog with sparkles | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: immediate",
+      "latency_seconds": 5.47,
       "expected": {
         "expected_tone": "warm delight, gentle excitement",
         "must_contain": [
@@ -58,11 +64,17 @@
     {
       "role": "ai",
       "step": "1_followup_ideal",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(warm and excited) Happy! Its heart must be singing with joy! What if we could hear what your doggy is thinking inside? Like a magic game!",
+      "screen": {
+        "character_display": "illustration of dog with a thought bubble",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(warm and excited) Happy! Its heart must be singing with joy! What if we could hear what your doggy is thinking inside? Like a magic game!\n\n[SCREEN] character_display: illustration of dog with a thought bubble | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 4.03,
       "expected": {
         "expected_tone": "warm, building to magical",
         "must_contain": [
@@ -87,11 +99,17 @@
     {
       "role": "ai",
       "step": "1_followup_unexpected",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(playing along) Oh, its tummy is grumbling! That means it feels a bit hungry right now. I'll say what happens, and you tell me how it feels! If the doggy lost its ball, it might say \"oh no!\" Ready?",
+      "screen": {
+        "character_display": "illustration of dog looking for a ball",
+        "animation": "card_slide_in"
+      },
+      "audio": {
+        "sfx": "game_start_chime",
+        "timing": "immediate"
+      },
+      "raw_response": "(playing along) Oh, its tummy is grumbling! That means it feels a bit hungry right now. I'll say what happens, and you tell me how it feels! If the doggy lost its ball, it might say \"oh no!\" Ready?\n\n[SCREEN] character_display: illustration of dog looking for a ball | animation: card_slide_in\n[AUDIO] sfx: game_start_chime | timing: immediate",
+      "latency_seconds": 4.01,
       "expected": {
         "must_validate_first": true,
         "must_contain": [
@@ -114,11 +132,17 @@
     {
       "role": "ai",
       "step": "1_followup_silent",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(gentle and encouraging) Maybe the doggy goes \"oh dear, where is it?\" What do you think?",
+      "screen": {
+        "character_display": "illustration of dog looking for a ball",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "wonder_chime",
+        "timing": "immediate"
+      },
+      "raw_response": "(gentle and encouraging) Maybe the doggy goes \"oh dear, where is it?\" What do you think?\n\n[SCREEN] character_display: illustration of dog looking for a ball | animation: gentle_pulse\n[AUDIO] sfx: wonder_chime | timing: immediate",
+      "latency_seconds": 2.83,
       "expected": {
         "must_wait": true,
         "expected_tone": "gentle, quiet",
@@ -138,11 +162,17 @@
     {
       "role": "ai",
       "step": "2_rule_demo",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(excited) Yay! Let's start! The sun is warm on the doggy's belly right now. What does it say?",
+      "screen": {
+        "character_display": "illustration of dog resting in sunlight",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(excited) Yay! Let's start! The sun is warm on the doggy's belly right now. What does it say?\n\n[SCREEN] character_display: illustration of dog resting in sunlight | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 5.58,
       "expected": {
         "expected_tone": "mysterious, playful",
         "must_contain": [
@@ -163,11 +193,11 @@
     {
       "role": "ai",
       "step": "3_round1_scenario",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 4.7,
       "expected": {
         "expected_tone": "storytelling",
         "must_contain": [
@@ -195,11 +225,17 @@
     {
       "role": "ai",
       "step": "3_round1_followup",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(cheering) That is so cozy! Now, oops! The doggy just slipped and went bump! What does it say now?",
+      "screen": {
+        "character_display": "illustration of dog looking surprised after a bump",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(cheering) That is so cozy! Now, oops! The doggy just slipped and went bump! What does it say now?\n\n[SCREEN] character_display: illustration of dog looking surprised after a bump | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 3.88,
       "expected": {
         "expected_tone": "mirroring child's warmth",
         "must_validate_first": true,
@@ -213,11 +249,11 @@
     {
       "role": "ai",
       "step": "3_round2_scenario",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 3.2,
       "expected": {
         "expected_tone": "dramatic, playful",
         "expected_screen": {
@@ -239,11 +275,17 @@
     {
       "role": "ai",
       "step": "3_round2_followup_unexpected",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(giggling) Woof woof! That sounds like a big surprise! Now, the owner brings a yummy treat! How does the doggy feel now?",
+      "screen": {
+        "character_display": "illustration of dog wagging tail for a treat",
+        "animation": "gentle_pulse"
+      },
+      "audio": {
+        "sfx": "excitement_rising",
+        "timing": "immediate"
+      },
+      "raw_response": "(giggling) Woof woof! That sounds like a big surprise! Now, the owner brings a yummy treat! How does the doggy feel now?\n\n[SCREEN] character_display: illustration of dog wagging tail for a treat | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: immediate",
+      "latency_seconds": 6.12,
       "expected": {
         "must_validate_first": true,
         "expected_screen": {
@@ -259,11 +301,11 @@
     {
       "role": "ai",
       "step": "3_round3_scenario",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 4.34,
       "expected": {
         "expected_tone": "building excitement",
         "expected_screen": {
@@ -286,11 +328,17 @@
     {
       "role": "ai",
       "step": "3_round3_followup",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "screen": {},
-      "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "text": "(cheering) You are the best Dog's Emotion Translator ever! You heard it being cozy, surprised, and excited all in one day! \n\n\n(warmly) The same doggy feels different things when different things happen, and that is called Perspective! Next time you see your toy, tell me what it's thinking!",
+      "screen": {
+        "badge_award": "\"Emotion Translator\" badge with floating \"Perspective\" text",
+        "animation": "concept_reveal"
+      },
+      "audio": {
+        "sfx": "mission_complete_fanfare",
+        "timing": "immediate"
+      },
+      "raw_response": "(cheering) You are the best Dog's Emotion Translator ever! You heard it being cozy, surprised, and excited all in one day! \n\n[SCREEN] badge_award: \"Emotion Translator\" badge | animation: badge_reveal\n[AUDIO] sfx: celebration_fanfare | timing: immediate\n\n(warmly) The same doggy feels different things when different things happen, and that is called Perspective! Next time you see your toy, tell me what it's thinking!\n\n[SCREEN] badge_award: \"Emotion Translator\" badge with floating \"Perspective\" text | animation: concept_reveal\n[AUDIO] sfx: mission_complete_fanfare | timing: immediate",
+      "latency_seconds": 3.12,
       "expected": {
         "expected_tone": "celebrating",
         "expected_screen": {
@@ -307,11 +355,11 @@
     {
       "role": "ai",
       "step": "4_celebration",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 2.16,
       "expected": {
         "expected_tone": "proud, warm",
         "must_contain": [
@@ -333,11 +381,11 @@
     {
       "role": "ai",
       "step": "5_closing",
-      "text": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
+      "text": "",
       "screen": {},
       "audio": {},
-      "raw_response": "[ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}]",
-      "latency_seconds": -1,
+      "raw_response": "",
+      "latency_seconds": 2.0,
       "expected": {
         "expected_tone": "warm celebration",
         "must_contain": [

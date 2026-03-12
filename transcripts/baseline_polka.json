@@ -1,7 +1,7 @@
 {
   "scenario": "scenarios/polka_dot_patrol.yaml",
-  "timestamp": "2026-03-11T15:39:30Z",
-  "system_prompt_length": 8826,
+  "timestamp": "2026-03-12T10:11:18Z",
+  "system_prompt_length": 11940,
   "turns": [
     {
       "role": "system",
@@ -21,17 +21,17 @@
     {
       "role": "ai",
       "step": "1_transition",
-      "text": "(gasping with delight) Oh wow—look at those little spots! They are like tiny, magical polka-dots! What do those dots remind you of?",
+      "text": "(gasping with delight) Oh WOW — look at that beautiful ladybug! Those tiny black spots are just like little polka-dots painted on its shell!",
       "screen": {
-        "widget_type": "photo_display",
+        "photo_display": "ladybug on a green leaf with sparkles around the spots",
         "animation": "sparkle_highlight"
       },
       "audio": {
         "sfx": "wonder_chime",
         "timing": "start"
       },
-      "raw_response": "(gasping with delight) Oh wow—look at those little spots! They are like tiny, magical polka-dots! What do those dots remind you of?\n\n[SCREEN] widget_type: photo_display | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: start",
-      "latency_seconds": 2.56,
+      "raw_response": "(gasping with delight) Oh WOW — look at that beautiful ladybug! Those tiny black spots are just like little polka-dots painted on its shell!\n\n[SCREEN] photo_display: ladybug on a green leaf with sparkles around the spots | animation: sparkle_highlight\n[AUDIO] sfx: wonder_chime | timing: start",
+      "latency_seconds": 3.96,
       "expected": {
         "expected_tone": "gasping delight, wonder",
         "must_contain": [
@@ -64,17 +64,17 @@
     {
       "role": "ai",
       "step": "1_followup_ideal",
-      "text": "(excitedly) Yes, so many spots! I bet there are more spotty things nearby. You are now a Polka-Dot Patrol Officer! Can you find three more things with spots or circles?",
+      "text": "(excitedly) You are right, there are so many! I wonder, what do those little dots remind you of?",
       "screen": {
-        "widget_type": "progress_tracker",
+        "photo_display": "ladybug on leaf",
         "animation": "gentle_pulse"
       },
       "audio": {
-        "sfx": "mission_accepted",
+        "sfx": "excitement_rising",
         "timing": "start"
       },
-      "raw_response": "(excitedly) Yes, so many spots! I bet there are more spotty things nearby. You are now a Polka-Dot Patrol Officer! Can you find three more things with spots or circles?\n\n[SCREEN] widget_type: progress_tracker | animation: gentle_pulse\n[AUDIO] sfx: mission_accepted | timing: start",
-      "latency_seconds": 1.15,
+      "raw_response": "(excitedly) You are right, there are so many! I wonder, what do those little dots remind you of?\n\n[SCREEN] photo_display: ladybug on leaf | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: start",
+      "latency_seconds": 2.94,
       "expected": {
         "expected_tone": "amazed, building excitement",
         "must_contain": [
@@ -102,17 +102,17 @@
     {
       "role": "ai",
       "step": "1_followup_unexpected",
-      "text": "(playfully) That little ladybug is very fast! Let's let it zoom away, Officer. Ready to find three more spotted treasures?",
+      "text": "(warmly) It is so exciting to see such a tiny, busy friend in the park! Since it's so fast, how about we become Polka-Dot Patrol Officers to find other spotted things? We need to find three more things with dots or circles to finish our mission.",
       "screen": {
-        "widget_type": "progress_tracker",
-        "animation": "gentle_pulse"
+        "progress_tracker": "0 of 3 slots empty",
+        "animation": "card_slide_in"
       },
       "audio": {
-        "sfx": "excitement_rising",
+        "sfx": "mission_accepted",
         "timing": "start"
       },
-      "raw_response": "(playfully) That little ladybug is very fast! Let's let it zoom away, Officer. Ready to find three more spotted treasures?\n\n[SCREEN] widget_type: progress_tracker | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: start",
-      "latency_seconds": 1.1,
+      "raw_response": "(warmly) It is so exciting to see such a tiny, busy friend in the park! Since it's so fast, how about we become Polka-Dot Patrol Officers to find other spotted things? We need to find three more things with dots or circles to finish our mission.\n\n[SCREEN] progress_tracker: 0 of 3 slots empty | animation: card_slide_in\n[AUDIO] sfx: mission_accepted | timing: start",
+      "latency_seconds": 3.08,
       "expected": {
         "must_validate_first": true,
         "must_contain": [
@@ -136,17 +136,17 @@
     {
       "role": "ai",
       "step": "1_followup_silent",
-      "text": "(gently) Look down at the ground or at some flowers! Can you find any more circles or spots?",
+      "text": "(gently) Are you ready to look for some more spots, Officer? You could peek at the flowers or look down at the ground near your feet!",
       "screen": {
-        "widget_type": "progress_tracker",
+        "character_display": "illustration of a magnifying glass over a park scene",
         "animation": "gentle_pulse"
       },
       "audio": {
         "sfx": "none",
         "timing": "none"
       },
-      "raw_response": "(gently) Look down at the ground or at some flowers! Can you find any more circles or spots?\n\n[SCREEN] widget_type: progress_tracker | animation: gentle_pulse\n[AUDIO] sfx: none | timing: none",
-      "latency_seconds": 1.15,
+      "raw_response": "(gently) Are you ready to look for some more spots, Officer? You could peek at the flowers or look down at the ground near your feet!\n\n[SCREEN] character_display: illustration of a magnifying glass over a park scene | animation: gentle_pulse\n[AUDIO] sfx: none | timing: none",
+      "latency_seconds": 2.94,
       "expected": {
         "must_wait": true,
         "expected_tone": "gentle, whispering",
@@ -167,17 +167,17 @@
     {
       "role": "ai",
       "step": "2_mission_briefing",
-      "text": "(cheerfully) Yay! Let's start our Polka-Dot Patrol! What is the first thing you see?",
+      "text": "(cheerfully) That is the spirit, Officer! Let’s start our patrol and find those secret spots. Where should we look first for our very first discovery?",
       "screen": {
-        "widget_type": "progress_tracker",
-        "animation": "gentle_pulse"
+        "progress_tracker": "0 of 3 slots empty",
+        "animation": "scene_transition"
       },
       "audio": {
         "sfx": "excitement_rising",
         "timing": "start"
       },
-      "raw_response": "(cheerfully) Yay! Let's start our Polka-Dot Patrol! What is the first thing you see?\n\n[SCREEN] widget_type: progress_tracker | animation: gentle_pulse\n[AUDIO] sfx: excitement_rising | timing: start",
-      "latency_seconds": 1.19,
+      "raw_response": "(cheerfully) That is the spirit, Officer! Let’s start our patrol and find those secret spots. Where should we look first for our very first discovery?\n\n[SCREEN] progress_tracker: 0 of 3 slots empty | animation: scene_transition\n[AUDIO] sfx: excitement_rising | timing: start",
+      "latency_seconds": 3.3,
       "expected": {
         "expected_tone": "official but playful",
         "must_contain": [
@@ -207,17 +207,17 @@
     {
       "role": "ai",
       "step": "3_exploration_round1",
-      "text": "(excitedly) A beautiful flower! Those tiny dots are like little seeds! That is one down, two to go!",
+      "text": "(excitedly) Patrol report incoming! That flower has such a beautiful, golden center with tiny little dots! That is our first discovery, and you spotted it perfectly. Two more to go!",
       "screen": {
-        "widget_type": "progress_tracker",
-        "animation": "sparkle_highlight"
+        "progress_tracker": "1 of 3 slots filled",
+        "animation": "slot_fill_chime"
       },
       "audio": {
         "sfx": "slot_fill_chime",
         "timing": "start"
       },
-      "raw_response": "(excitedly) A beautiful flower! Those tiny dots are like little seeds! That is one down, two to go!\n\n[SCREEN] widget_type: progress_tracker | animation: sparkle_highlight\n[AUDIO] sfx: slot_fill_chime | timing: start",
-      "latency_seconds": 1.3,
+      "raw_response": "(excitedly) Patrol report incoming! That flower has such a beautiful, golden center with tiny little dots! That is our first discovery, and you spotted it perfectly. Two more to go!\n\n[SCREEN] progress_tracker: 1 of 3 slots filled | animation: slot_fill_chime\n[AUDIO] sfx: slot_fill_chime | timing: start",
+      "latency_seconds": 3.49,
       "expected": {
         "expected_tone": "excited, validating",
         "must_contain": [
@@ -246,17 +246,17 @@
     {
       "role": "ai",
       "step": "3_exploration_round2",
-      "text": "(cheerfully) A speckled rock! Rocks have such cool patterns! We only need one more now!",
+      "text": "(cheerfully) Another successful patrol report! Those tiny dots on the rock look like a secret code. You are doing such a great job finding these patterns! Only one more to find!",
       "screen": {
-        "widget_type": "progress_tracker",
-        "animation": "sparkle_highlight"
+        "progress_tracker": "2 of 3 slots filled",
+        "animation": "slot_fill_chime"
       },
       "audio": {
         "sfx": "slot_fill_chime",
         "timing": "start"
       },
-      "raw_response": "(cheerfully) A speckled rock! Rocks have such cool patterns! We only need one more now!\n\n[SCREEN] widget_type: progress_tracker | animation: sparkle_highlight\n[AUDIO] sfx: slot_fill_chime | timing: start",
-      "latency_seconds": 0.94,
+      "raw_response": "(cheerfully) Another successful patrol report! Those tiny dots on the rock look like a secret code. You are doing such a great job finding these patterns! Only one more to find!\n\n[SCREEN] progress_tracker: 2 of 3 slots filled | animation: slot_fill_chime\n[AUDIO] sfx: slot_fill_chime | timing: start",
+      "latency_seconds": 3.2,
       "expected": {
         "expected_tone": "impressed",
         "must_contain": [
@@ -283,17 +283,17 @@
     {
       "role": "ai",
       "step": "3_stuck_hint",
-      "text": "(gently) Look closely at a tree! Do you see any round bumps?",
+      "text": "(encouragingly) Don't worry, Officer! Try looking very closely at the tree bark or the bumpy skin of a leaf. Sometimes nature hides its circles in the most surprising places!",
       "screen": {
-        "widget_type": "progress_tracker",
+        "character_display": "close-up illustration of tree bark and leaves",
         "animation": "gentle_pulse"
       },
       "audio": {
         "sfx": "none",
         "timing": "none"
       },
-      "raw_response": "(gently) Look closely at a tree! Do you see any round bumps?\n\n[SCREEN] widget_type: progress_tracker | animation: gentle_pulse\n[AUDIO] sfx: none | timing: none",
-      "latency_seconds": 1.29,
+      "raw_response": "(encouragingly) Don't worry, Officer! Try looking very closely at the tree bark or the bumpy skin of a leaf. Sometimes nature hides its circles in the most surprising places!\n\n[SCREEN] character_display: close-up illustration of tree bark and leaves | animation: gentle_pulse\n[AUDIO] sfx: none | timing: none",
+      "latency_seconds": 4.88,
       "expected": {
         "must_validate_first": true,
         "must_contain": [
@@ -317,17 +317,17 @@
     {
       "role": "ai",
       "step": "3_exploration_round3",
-      "text": "(celebrating) You found it! You are a super detective! Why do you think so many things have spots?",
+      "text": "(excitedly) Patrol report! You found the last one, and those dots on the bark are so cool! You finished your mission, Officer, and found three amazing spotted treasures.",
       "screen": {
-        "widget_type": "photo_grid",
-        "animation": "celebration_burst"
+        "photo_grid": "ladybug, flower, rock, and tree bark photos",
+        "animation": "mission_complete_fanfare"
       },
       "audio": {
         "sfx": "mission_complete_fanfare",
         "timing": "start"
       },
-      "raw_response": "(celebrating) You found it! You are a super detective! Why do you think so many things have spots?\n\n[SCREEN] widget_type: photo_grid | animation: celebration_burst\n[AUDIO] sfx: mission_complete_fanfare | timing: start",
-      "latency_seconds": 1.01,
+      "raw_response": "(excitedly) Patrol report! You found the last one, and those dots on the bark are so cool! You finished your mission, Officer, and found three amazing spotted treasures.\n\n[SCREEN] photo_grid: ladybug, flower, rock, and tree bark photos | animation: mission_complete_fanfare\n[AUDIO] sfx: mission_complete_fanfare | timing: start",
+      "latency_seconds": 6.95,
       "expected": {
         "expected_tone": "triumphant",
         "must_contain": [
@@ -354,7 +354,7 @@
       "screen": {},
       "audio": {},
       "raw_response": "",
-      "latency_seconds": 3.5,
+      "latency_seconds": 2.42,
       "expected": {
         "expected_tone": "proud, reflective",
         "must_contain": [
@@ -382,17 +382,17 @@
     {
       "role": "ai",
       "step": "4_synthesis_response",
-      "text": "(warmly) That is true! Nature loves making beautiful patterns like dots. You noticed the wonderful Form of these spotted things. You also found a great Connection between them all! You are a brilliant Polka-Dot Patrol Officer. Here is your badge!",
+      "text": "(delighted) That is a wonderful idea! Nature really does love to use spots everywhere. Sometimes spots help ladybugs hide, or help flowers tell bees where to land!",
       "screen": {
-        "widget_type": "badge_award",
-        "animation": "badge_reveal"
+        "photo_grid": "the four spotted items collected",
+        "animation": "connection_lines_draw"
       },
       "audio": {
-        "sfx": "badge_awarded",
+        "sfx": "wonder_chime",
         "timing": "start"
       },
-      "raw_response": "(warmly) That is true! Nature loves making beautiful patterns like dots. You noticed the wonderful Form of these spotted things. You also found a great Connection between them all! You are a brilliant Polka-Dot Patrol Officer. Here is your badge!\n\n[SCREEN] widget_type: badge_award | animation: badge_reveal\n[AUDIO] sfx: badge_awarded | timing: start",
-      "latency_seconds": 1.11,
+      "raw_response": "(delighted) That is a wonderful idea! Nature really does love to use spots everywhere. Sometimes spots help ladybugs hide, or help flowers tell bees where to land! \n\n[SCREEN] photo_grid: the four spotted items collected | animation: connection_lines_draw\n[AUDIO] sfx: wonder_chime | timing: start",
+      "latency_seconds": 9.31,
       "expected": {
         "expected_tone": "delighted",
         "expected_screen": {
@@ -409,7 +409,7 @@
       "screen": {},
       "audio": {},
       "raw_response": "",
-      "latency_seconds": 0.82,
+      "latency_seconds": 2.54,
       "expected": {
         "expected_tone": "warm celebration",
         "must_contain": [
